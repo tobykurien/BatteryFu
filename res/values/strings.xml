@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BatteryFu</string>
+    <string name="mode_select">Select BatteryFu Mode</string>
+
+    <string name="about_label">About</string>
+    <string name="exit_label">Exit</string>
+
+    <string name="about_title">About BatteryFu</string>
+    <string name="about_text">
+BatteryFu extends your phone battery life by disabling your 
+data connection(s) and then periodically enabling them 
+for syncs (email checks etc). Always-on mobile data consumes
+a lot of battery power, especially when travelling or when the cellular 
+signal is weak.
+\n\n 
+You can use the <i>Data while screen on</i> 
+feature to access the internet automatically while using your phone. Use the 
+<i>Night mode</i> feature to save even more battery and data while you are asleep.
+You can save even more battery power by enabling the <i>Use only 2G networks</i> 
+option in your Android settings.
+\n\n
+Please see the website for details, optimal settings, FAQs, etc. The website is accessible 
+from the Market listing for BatteryFu.
+\n\n
+Created by <b>Toby Kurien</b>
+    </string>
+
+    <string name="apn_problem_title">APN Problem</string>
+    <string name="apn_problem_text">
+BatteryFu has detected a problem with your APN settings. It is possible 
+that you are on a CDMA network,  that you have only one access point 
+that is also used for MMS, or some other app like APNdroid has disabled 
+your APN. Please see the website for details. 
+\n\n
+If you haven\'t already, it is recommended that you install the APNdroid app 
+from the market, after which BatteryFu will use it automatically for mobile 
+data toggling. 
+\n\n
+BatteryFu will now continue as normal although it may not be as effective 
+(or indeed work at all).
+    </string>
+    
+    <string name="apndroid_error_title">APNdroid error</string>
+    <string name="apndroid_error_text">
+APNdroid was not found, or is an old version. Please search the Market 
+for the latest version of APNdroid and install it, in order to use it 
+for toggling mobile data. Otherwise, untick the option to use APNdroid 
+for mobile data toggling.    
+    </string>
+    <string name="title_battery_minder">BatteryMinder</string>
+    <string name="title_general_stats">General Stats</string>
+    <string name="title_kernel_wakelocks">Kernel Wakelocks</string>
+    <string name="title_cpu_stats">CPU Stats</string>
+    <string name="bm_battery_usage">Battery Usage</string>
+    <string name="requires_android_1_6">Requires Android 1.6 or above</string>
+    <string name="not_needed_on_this_device">Not needed on this device</string>
+    <string name="btn_ok">Ok</string>
+    <string name="batteryfu_started">BatteryFu started</string>
+    <string name="batteryfu_stopped">BatteryFu stopped</string>
+    <string name="error_cpu_stats">"ERROR: Unable to get CPU stats: "</string>
+    <string name="cpu_sleep">CPU sleep</string>
+    <string name="screen_on_time">Screen on time</string>
+    <string name="battery_usage_while_screen_off">Battery usage while screen off</string>
+    <string name="battery_level">Battery level</string>
+    <string name="background_cpu_usage">Background CPU usage (experimental)</string>
+    <string name="wakelocks_prevent_the_cpu_from_sleeping">Wakelocks prevent the CPU from sleeping</string>
+    <string name="time_spend_at_various_cpu_speeds">Time spend at various CPU speeds</string>
+    <string name="error">"ERROR: "</string>
+    <string name="suffix_days">"d "</string>
+    <string name="suffix_hours">"h "</string>
+    <string name="suffix_minutes">"m "</string>
+    <string name="suffix_seconds">"s "</string>
+    <string name="data_enabled_waiting_for_connection">Data enabled, waiting for connection</string>
+    <string name="airplane_mode_is_on">Airplane mode is on</string>
+    <string name="data_while_screen_on_night_mode_cancelled">Data while screen on, night mode cancelled</string>
+    <string name="night_mode_ended_starting_sync">Night mode ended, starting sync</string>
+    <string name="wifi_disabled_travel_mode_activated">Wifi disabled. Travel mode activated.</string>
+    <string name="wifi_toggling_not_enabled_standard_mode_activated">Wifi toggling not enabled. Standard mode activated.</string>
+    <string name="data_disabled_offline_mode_activated">Data disabled. Offline mode activated.</string>
+    <string name="data_enabled_online_mode_activated">Data enabled. Online mode activated.</string>
+    <string name="running_account_sync">Running account sync.</string>
+    <string name="data_disabled_night_mode_started">Data disabled, night mode started</string>
+    <string name="data_switched_on_while_charging">Data switched on while charging</string>
+    <string name="data_switched_on_while_screen_is_on">Data switched on while screen is on</string>
+    <string name="data_switched_on_while_screen_is_unlocked">Data switched on while screen is unlocked</string>
+    <string name="started_on_boot">Started on boot</string>
+    <string name="data_connected_running_sync">Data connected, running sync</string>
+    <string name="starting">Starting...</string>
+    <string name="data_enabled_until_next_night_mode_start">Data enabled until next night mode start</string>
+    <string name="data_disabled_waiting_for_next_sync">Data disabled, waiting for next sync</string>
+    <string name="data_disabled_next_sync_at_">"Data disabled, next sync at "</string>
+    <string name="settings">Settings</string>
+    <string name="mode_always_offline">Always offline</string>
+    <string name="mode_always_online">Always online</string>
+    <string name="mode_standard">Standard</string>
+    <string name="mode_go_online_now">Go online now</string>
+    <string name="mode_start_night_mode">Start night mode</string>
+    <string name="mode_stop_night_mode">Stop night mode</string>
+    <string name="mode_travel">Travel (wifi off)</string>
+    <string name="mode_batteryminder">BatteryMinder</string>
+    
+</resources>

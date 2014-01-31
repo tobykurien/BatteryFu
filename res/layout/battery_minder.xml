@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:text="@string/title_general_stats"
+                style="@style/ListTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:id="@+id/bm_gs_text"
+                style="@style/ListText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:text="@string/title_kernel_wakelocks"
+                style="@style/ListTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:id="@+id/bm_kw_text"
+                style="@style/ListText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:text="@string/title_cpu_stats"
+                style="@style/ListTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:id="@+id/bm_cs_text"
+                style="@style/ListText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showBatteryUsage"
+        android:text="@string/bm_battery_usage" />
+
+</LinearLayout>

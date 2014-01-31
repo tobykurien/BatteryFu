@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+   xmlns:android="http://schemas.android.com/apk/res/android">
+   <PreferenceCategory
+      android:key="general_settings"
+      android:title="General settings">
+      <CheckBoxPreference
+         android:key="enabled"
+         android:title="Enable"
+         android:summary="Enable BatteryFu"
+         android:defaultValue="true" />
+      <CheckBoxPreference
+         android:key="wifi"
+         android:title="Toggle Wifi"
+         android:summary="Allow toggling of Wifi"
+         android:defaultValue="true"
+         android:dependency="enabled" />
+      <PreferenceScreen
+         android:key="Mobile_Data_settings"
+         android:title="Mobile data options"
+         android:summary="Advanced mobile data switching options"
+         android:dependency="enabled">
+         <CheckBoxPreference
+            android:key="mobile"
+            android:title="Toggle Mobile data"
+            android:summary="Allow toggling of Mobile Data - required for battery saving!"
+            android:defaultValue="true"
+            android:dependency="enabled" />
+         <!-- CheckBoxPreference android:key="apndroid" android:title="Use 
+            APNdroid app" android:summary="Use APNdroid app from Market to toggle mobile 
+            data (recommended)" android:defaultValue="false" android:dependency="mobile"/ -->
+         <CheckBoxPreference
+            android:key="dns_fix"
+            android:title="DNS fix (needs root)"
+            android:summary="Experimental workaround for Android bug #2207 - 3G reconnect problem."
+            android:defaultValue="false"
+            android:dependency="mobile" />
+      </PreferenceScreen>
+      <CheckBoxPreference
+         android:key="start_on_boot"
+         android:title="Start on boot"
+         android:summary="Automatically start on bootup"
+         android:defaultValue="true"
+         android:dependency="enabled" />
+      <CheckBoxPreference
+         android:key="show_notification"
+         android:title="Show notification"
+         android:summary="Show a notification when running"
+         android:defaultValue="true"
+         android:dependency="enabled" />
+   </PreferenceCategory>
+   <PreferenceCategory
+      android:key="time_settings"
+      android:title="Time Settings">
+      <ListPreference
+         android:key="sleep_time"
+         android:title="Sleep time"
+         android:summary="Time between enabling of data"
+         android:entries="@array/sleep_time_labels"
+         android:entryValues="@array/sleep_time_values"
+         android:persistent="true"
+         android:defaultValue="30" />
+      <ListPreference
+         android:key="awake_time"
+         android:title="Connect time"
+         android:summary="How long to stay connected when awake"
+         android:entries="@array/awake_time_labels"
+         android:entryValues="@array/awake_time_values"
+         android:persistent="true"
+         android:defaultValue="2" />
+   </PreferenceCategory>
+   <PreferenceCategory
+      android:key="Data_settings"
+      android:title="Data settings">
+      <CheckBoxPreference
+         android:key="charger_on_data"
+         android:title="Data while charging"
+         android:summary="Enable data when the charger is plugged in"
+         android:defaultValue="false"
+         android:dependency="enabled"
+         android:shouldDisableView="true" />
+      <PreferenceScreen
+         android:key="Screen_on_options"
+         android:title="Data while screen on"
+         android:summary="Options for data while the screen is on"
+         android:dependency="enabled">
+         <CheckBoxPreference
+            android:key="screen_on_data"
+            android:title="Data while screen on"
+            android:summary="Enable data when the screen is unlocked (not recommended)"
+            android:defaultValue="false"
+            android:dependency="enabled" />
+         <CheckBoxPreference
+            android:key="screen_on_unlock"
+            android:title="Wait till screen unlocked"
+            android:summary="Data only switched on if screen is unlocked"
+            android:defaultValue="true"
+            android:dependency="screen_on_data" />
+         <CheckBoxPreference
+            android:key="screen_keep_data"
+            android:title="Keep data till screen off"
+            android:summary="Don't turn off data while the screen is on"
+            android:defaultValue="true"
+            android:dependency="enabled" />
+         <ListPreference
+            android:key="screen_off_sleep_time"
+            android:title="Delay after screen off"
+            android:summary="Time to wait after screen off before disabling data"
+            android:entries="@array/screen_off_time_labels"
+            android:entryValues="@array/screen_off_time_values"
+            android:persistent="true"
+            android:defaultValue="30"/>
+      </PreferenceScreen>
+      <PreferenceScreen
+         android:key="Nightmode_options"
+         android:title="Night mode options"
+         android:summary="Night mode settings to prevent data usage at night"
+         android:dependency="enabled">
+         <CheckBoxPreference
+            android:key="night_mode_enabled"
+            android:title="Enable night mode"
+            android:summary="Turn data off at night for extra battery savings"
+            android:defaultValue="false" />
+         <CheckBoxPreference
+            android:key="night_mode_only"
+            android:title="Night mode only"
+            android:summary="Will only switch off data during nightmode (not recommended)"
+            android:defaultValue="false"
+            android:dependency="night_mode_enabled" />
+         <TimePickerPreference
+            android:key="night_mode_start"
+            android:title="Night mode start"
+            android:summary="What time to start night mode"
+            android:defaultValue="22:00"
+            android:dependency="night_mode_enabled" />
+         <TimePickerPreference
+            android:key="night_mode_end"
+            android:title="Night mode end"
+            android:summary="What time to stop night mode"
+            android:defaultValue="06:00"
+            android:dependency="night_mode_enabled" />
+      </PreferenceScreen>
+      <CheckBoxPreference
+         android:key="force_sync"
+         android:title="Force Sync"
+         android:summary="Sync all accounts including disabled ones (for reliability)"
+         android:defaultValue="true"
+         android:dependency="enabled" />
+   </PreferenceCategory>
+</PreferenceScreen>

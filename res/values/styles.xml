@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Main" parent="@android:style/Theme.Black"></style>
+    <style name="Main.Dialog" parent="@android:style/Theme.Dialog"></style>
+    
+    <style name="ListTitle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:background">@android:drawable/divider_horizontal_dim_dark</item>
+    </style>
+
+    <style name="ListText" parent="@android:style/TextAppearance.Medium"></style>
+
+</resources>

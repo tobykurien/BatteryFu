@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Main" parent="@android:style/Theme.Holo"></style>
+    
+    <style name="Main.Dialog" parent="@android:style/Theme.Holo.Light.Dialog"></style>
+    
+</resources>
