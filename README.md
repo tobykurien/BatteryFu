@@ -5,3 +5,12 @@ BatteryFu (pronounced Battery-Foo, like in Kung-Fu) is an Android app that exten
 
 Google Play Store link:
 https://play.google.com/store/apps/details?id=com.tobykurien.batteryfu
+
+Dependencies
+============
+
+BatteryFu depends on the https://github.com/koush/Widgets library, but an older version 
+of it. It won't compile with newer versions, so a copy of the library source is 
+included in the Widgets/ folder. You can use Gradle to build, or import Widgets as 
+a project into Eclipse and add it as an Android library.
+ 
