@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BatteryFu</string>
+    <string name="mode_select">Seleziona modalità</string>
+
+    <string name="about_label">Informazioni</string>
+    <string name="exit_label">Esci</string>
+
+    <string name="about_title">Riguardo a BatteryFu</string>
+    <string name="about_text">
+BatteryFu estende la durata della batteria del tuo telefono disabilitando le connessioni dati e abilitandole periodicamente per la sincronizzazione (controllare l\'email, etc.). Una connessione dati sempre attiva consuma un sacco di batteria, specialmente quando si viaggia o il segnale telefonico è debole.
+\n\n
+Puoi usare la funzionalità <i>Dati con schermo attivo</i> per accedere a internet automaticamente quando stai usando il telefono. Usa la <i>Modalità notte</i> per risparmiare ancora più batteria e dati mentre stai dormendo. Puoi risparmiare ancora più batteria ablitando l\'opzione <i>Usa solo reti 2G</i> nelle tue impostazioni di Android.
+\n\n
+Visita il sito per dettagli, impostazioni consigliate, FAQs, etc. Il sito è accessibile dal Market cercando BatteryFu..
+\n\n
+Creato da <b>Toby Kurien</b>
+    </string>
+
+    <string name="apn_problem_title">Problema APN</string>
+    <string name="apn_problem_text">
+BatteryFu ha incontrato un problema con le tue impostazioni APN. È possibile che tu sia connesso a un network CDMA, che tu abbia solo un punto di accesso che è usato anche per gli MMS, o che qualche altra applicazione come APNdroid abbia disabilitato il tuo APN. Visita il sito per dettagli.
+\n\n
+Se non l\'hai ancora fatto, ti raccomandiamo di installare l\'app APNdroid dal market, dopodichè BatteryFu la utilizzerà automaticamente per l\'attivazione della connessione dati mobile.
+\n\n
+BatteryFu continuerà ora normalmente sebbene non funzioni come richiesto(o non funzioni del tutto).
+    </string>
+    
+    <string name="apndroid_error_title">Errore di APNdroid</string>
+    <string name="apndroid_error_text">
+APNdroid non è stato trovato, o è aggiornato ad una versione troppo vecchia. Per favore cerca nel Market l\'ultima versione di APNdroid e installala, in modo da poterla utilizzare per abilitare e disabilitare la connessione dati mobile. Altrimenti, deseleziona l\'opzione relativa all\'utilizzo di APNdroid.   
+    </string>
+    <string name="title_battery_minder">BatteryMinder</string>
+    <string name="title_general_stats">Statistiche Generali</string>
+    <string name="title_kernel_wakelocks">Wakelocks del kernel</string>
+    <string name="title_cpu_stats">Statistiche CPU</string>
+    <string name="bm_battery_usage">Utilizzo batteria</string>
+    <string name="requires_android_1_6">Richiede Android 1.6 o superiore</string>
+    <string name="not_needed_on_this_device">Non serve su questo dispositivo</string>
+    <string name="btn_ok">Ok</string>
+    <string name="batteryfu_started">BatteryFu avviato</string>
+    <string name="batteryfu_stopped">BatteryFu fermato</string>
+    <string name="error_cpu_stats">"ERRORE: Impossibile ottenere statistiche CPU: "</string>
+    <string name="cpu_sleep">CPU sleep</string>
+    <string name="screen_on_time">Tempo con schermo acceso</string>
+    <string name="battery_usage_while_screen_off">Utilizzo batteria mentre lo schermo è spento</string>
+    <string name="battery_level">Livello batteria</string>
+    <string name="background_cpu_usage">Utilizzo CPU in background (sperimentale)</string>
+    <string name="wakelocks_prevent_the_cpu_from_sleeping">Gli Wakelocks impediscono alla CPU di entrare in modalità sleep</string>
+    <string name="time_spend_at_various_cpu_speeds">Tempo speso dalla CPU alle varie velocità</string>
+    <string name="error">"ERRORE: "</string>
+    <string name="suffix_days">"g "</string>
+    <string name="suffix_hours">"o "</string>
+    <string name="suffix_minutes">"m "</string>
+    <string name="suffix_seconds">"s "</string>
+    <string name="data_enabled_waiting_for_connection">Dati attivati, in attesa di connessione</string>
+    <string name="airplane_mode_is_on">Modalità offline attivata</string>
+    <string name="data_while_screen_on_night_mode_cancelled">Dati attivi con schermo attivo, modalità notte fermata</string>
+    <string name="night_mode_ended_starting_sync">Modalità notte terminata, in attesa di sinc.</string>
+    <string name="wifi_disabled_travel_mode_activated">Wifi spento. Modalità viaggio attivata.</string>
+    <string name="wifi_toggling_not_enabled_standard_mode_activated">Commutazione Wifi non attiva. Modalità Standard attivata.</string>
+    <string name="data_disabled_offline_mode_activated">Dati disabilitati. Modalità offline attivata.</string>
+    <string name="data_enabled_online_mode_activated">Dati attivati. Modalità offline attivata.</string>
+    <string name="running_account_sync">Sicronizzazione account in corso.</string>
+    <string name="data_disabled_night_mode_started">Dati disattivati, modalità notte attivata</string>
+    <string name="data_switched_on_while_charging">Dati attivati durante la ricarica</string>
+    <string name="data_switched_on_while_screen_is_on">Dati attivati all\'accesione dello schermo</string>
+    <string name="data_switched_on_while_screen_is_unlocked">Dati attivati allo sblocco dello schermo</string>
+    <string name="started_on_boot">Avvio automatico</string>
+    <string name="data_connected_running_sync">Dati connessi, sincronizzazione</string>
+    <string name="starting">Avvio...</string>
+    <string name="data_enabled_until_next_night_mode_start">Dati disabilitati fino al passaggio a modalità notte</string>
+    <string name="data_disabled_waiting_for_next_sync">Dati disabilitati fino alla prossima sinc.</string>
+    <string name="data_disabled_next_sync_at_">"Dati disabilitati, sinc. alle "</string>
+    <string name="settings">Impostazioni</string>
+    <string name="mode_always_offline">Sempre offline</string>
+    <string name="mode_always_online">Sempre online</string>
+    <string name="mode_standard">Standard</string>
+    <string name="mode_go_online_now">Vai online ora</string>
+    <string name="mode_start_night_mode">Avvia modalità notte</string>
+    <string name="mode_stop_night_mode">Ferma modalità notte</string>
+    <string name="mode_travel">Viaggio (wifi off)</string>
+    <string name="mode_batteryminder">BatteryMinder</string>
+    
+</resources>
