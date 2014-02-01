@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+
+apply plugin: 'android'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.8'
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "19"
+
+
+    dependencies {
+      compile project(':Widgets')
+      //compile fileTree(dir: 'libs', includes: ['*.jar'])
+    }
+
+    sourceSets {
+      main {
+        manifest.srcFile 'AndroidManifest.xml'
+        aidl.srcDirs = ['src']
+        java.srcDirs = ['src']
+        res.srcDirs = ['res']
+        assets.srcDirs = ['assets']
+      }
+    }
+}
+
