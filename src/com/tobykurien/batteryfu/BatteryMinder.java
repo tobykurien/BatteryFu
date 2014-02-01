@@ -139,6 +139,7 @@ public class BatteryMinder extends ActivityBase {
    
    public void showBatteryUsage(View v) {
       Intent powerUsageIntent = new Intent(Intent.ACTION_POWER_USAGE_SUMMARY);
+      powerUsageIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
       ResolveInfo resolveInfo = getPackageManager().resolveActivity(powerUsageIntent, 0);
       // check that the Battery app exists on this device
       if(resolveInfo != null){

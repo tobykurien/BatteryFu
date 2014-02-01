@@ -75,6 +75,7 @@ public class ModeSelect extends Activity {
                return;
             } else if (isBatteryMinder(mode)) {
                Intent bm = new Intent(ModeSelect.this, BatteryMinder.class);
+               bm.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                startActivity(bm);
             } else {
                // mode not implemented
