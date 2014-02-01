@@ -271,7 +271,7 @@ public class MainFunctions {
       CharSequence contentText = text;
 
       Intent notificationIntent = new Intent(context, ModeSelect.class);
-      notificationIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
       PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
       notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
       mNotificationManager.notify(NOTIFICATION_ID_RUNNING, notification);
