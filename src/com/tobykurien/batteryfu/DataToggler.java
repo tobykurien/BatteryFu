@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.tobykurien.android.Utils;
 import com.tobykurien.batteryfu.data_switcher.MobileDataSwitcher;
 
@@ -271,19 +273,34 @@ public class DataToggler extends BroadcastReceiver {
 
          // enable wifi
          if (settings.isWifiEnabled() && !settings.isTravelMode()) {
-            WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            Log.i("BatteryFu", "DataToggler enabling wifi");
+            final WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             wm.setWifiEnabled(true);
             wm.startScan();
             wm.reconnect();
+
+            // wait a bit for wifi to connect
+            new AsyncTask<Void, Void, Boolean>() {
+               @Override
+               protected Boolean doInBackground(Void... params) {
+                  try {
+                     Thread.sleep(10000);  // wait 10 seconds
+                  } catch (InterruptedException e) {
+                  }
+                  
+                  if (wm.getConnectionInfo() == null || wm.getConnectionInfo().getNetworkId() < 0) {
+                     Log.i("BatteryFu", "Wifi not connected after timeout, enabling mobile data");
+                     connectMobileData(context, settings);
+                     return false;
+                  }
+                  
+                  return true;
+               }
+
+            }.execute();
          } else {
             Log.d("BatteryFu", "Wifi toggling disabled");
-         }
-
-         // turn on mobile data
-         if (settings.isMobileDataEnabled()) {
-            MobileDataSwitcher.enableMobileData(context, settings);
-         } else {
-            Log.d("BatteryFu", "Mobile data toggling disabled");
+            connectMobileData(context, settings);
          }
       }
 
@@ -312,4 +329,12 @@ public class DataToggler extends BroadcastReceiver {
       }
    }
 
+   private static void connectMobileData(final Context context, final Settings settings) {
+      // turn on mobile data
+      if (settings.isMobileDataEnabled()) {
+         MobileDataSwitcher.enableMobileData(context, settings);
+      } else {
+         Log.d("BatteryFu", "Mobile data toggling disabled");
+      }
+   }
 }
