@@ -3,3 +3,4 @@ obj
 local.properties
 gen
 /build
+/.gradle
