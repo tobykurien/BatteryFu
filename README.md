@@ -13,4 +13,8 @@ BatteryFu depends on the https://github.com/koush/Widgets library, but an older 
 of it. It won't compile with newer versions, so a copy of the library source is 
 included in the Widgets/ folder. You can use Gradle to build, or import Widgets as 
 a project into Eclipse and add it as an Android library.
- 
+
+Credits
+=======
+
+- Italian translation by Emanuele Brown
