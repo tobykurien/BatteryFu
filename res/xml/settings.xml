@@ -87,7 +87,7 @@
          <CheckBoxPreference
             android:key="screen_on_data"
             android:title="Data while screen on"
-            android:summary="Enable data when the screen is unlocked (not recommended)"
+            android:summary="Enable data when the screen is switched on (not recommended)"
             android:defaultValue="false"
             android:dependency="enabled" />
          <CheckBoxPreference
