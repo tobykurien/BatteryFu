@@ -3,7 +3,7 @@
    xmlns:android="http://schemas.android.com/apk/res/android">
    <PreferenceCategory
       android:key="general_settings"
-      android:title="General settings">
+      android:title="Impostazioni generali">
       <CheckBoxPreference
          android:key="enabled"
          android:title="Attiva"
@@ -50,7 +50,7 @@
    </PreferenceCategory>
    <PreferenceCategory
       android:key="time_settings"
-      android:title="Time Settings">
+      android:title="Impostazioni orario">
       <ListPreference
          android:key="sleep_time"
          android:title="Tempo di riposo"

@@ -3,7 +3,7 @@
     package="com.tobykurien.batteryfu"
     android:installLocation="auto"
     android:versionCode="44"
-    android:versionName="1.44-beta1" >
+    android:versionName="1.44" >
 
     <uses-sdk
         android:minSdkVersion="3"
