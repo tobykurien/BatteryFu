@@ -87,9 +87,9 @@ for mobile data toggling.
     <string name="started_on_boot">Started on boot</string>
     <string name="data_connected_running_sync">Data connected, running sync</string>
     <string name="starting">Starting...</string>
-    <string name="data_enabled_until_next_night_mode_start">Data enabled until next night mode start</string>
-    <string name="data_disabled_waiting_for_next_sync">Data disabled, waiting for next sync</string>
-    <string name="data_disabled_next_sync_at_">"Data disabled, next sync at "</string>
+    <string name="data_enabled_until_next_night_mode_start">Data enabled until night mode</string>
+    <string name="data_disabled_waiting_for_next_sync">Data disabled, waiting for sync</string>
+    <string name="data_disabled_next_sync_at_">Next sync at </string>
     <string name="settings">Settings</string>
     <string name="mode_always_offline">Always offline</string>
     <string name="mode_always_online">Always online</string>

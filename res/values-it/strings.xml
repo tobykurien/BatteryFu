@@ -71,7 +71,7 @@ APNdroid non è stato trovato, o è aggiornato ad una versione troppo vecchia. P
     <string name="starting">Avvio...</string>
     <string name="data_enabled_until_next_night_mode_start">Dati disabilitati fino al passaggio a modalità notte</string>
     <string name="data_disabled_waiting_for_next_sync">Dati disabilitati fino alla prossima sinc.</string>
-    <string name="data_disabled_next_sync_at_">"Dati disabilitati, sinc. alle "</string>
+    <string name="data_disabled_next_sync_at_">Dati disabilitati, sinc. alle </string>
     <string name="settings">Impostazioni</string>
     <string name="mode_always_offline">Sempre offline</string>
     <string name="mode_always_online">Sempre online</string>
