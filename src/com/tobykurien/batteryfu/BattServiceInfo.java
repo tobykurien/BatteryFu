@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.SparseArray;
 
 public class BattServiceInfo {
@@ -59,14 +60,11 @@ public class BattServiceInfo {
          this.inst = ((Parcelable.Creator) localClass3.getField("CREATOR").get(localClass3)).createFromParcel(localParcel);
          return;
       } catch (IllegalArgumentException localIllegalArgumentException) {
-         while (true)
-            this.inst = null;
+         Log.d("BattServiceInfo", "Error in constructor", localIllegalArgumentException);
       } catch (ClassNotFoundException localClassNotFoundException) {
-         while (true)
-            this.inst = null;
+         Log.d("BattServiceInfo", "Error in constructor", localClassNotFoundException);
       } catch (Exception localException) {
-         while (true)
-            this.inst = null;
+         Log.d("BattServiceInfo", "Error in constructor", localException);
       }
    }
 

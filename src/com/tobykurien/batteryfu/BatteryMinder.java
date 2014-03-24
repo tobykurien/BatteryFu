@@ -25,7 +25,7 @@ public class BatteryMinder extends ActivityBase {
    @Override
    public void onCreate(Bundle savedInstanceState, View view) {
       super.onCreate(savedInstanceState, view);
-      //setContentView(R.layout.battery_minder);
+      
       int which = bstat.STATS_TOTAL;
       bstat = new BattServiceInfo(this);
       long rawRealtime = System.currentTimeMillis() * 1000;

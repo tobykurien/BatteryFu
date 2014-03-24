@@ -161,8 +161,9 @@ public class ModeSelect extends Activity {
    }
    
    public static boolean enableBatteryMinder() {
-      // battery minder only available from android 2.2 up
-      return Integer.parseInt(Build.VERSION.SDK) >= 8;
+      // battery minder only available from android 2.2 up, 
+      // and less than KitKat (see https://code.google.com/p/android/issues/detail?id=61975)
+      return Integer.parseInt(Build.VERSION.SDK) >= 8 && Integer.parseInt(Build.VERSION.SDK) < 19;
    }
 
    private boolean isOffline(String mode) {
