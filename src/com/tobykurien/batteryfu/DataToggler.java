@@ -119,7 +119,6 @@ public class DataToggler extends BroadcastReceiver {
             MainFunctions.showNotification(context, settings, context.getString(R.string.data_enabled_online_mode_activated));
          } else if ("sync://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Performing sync");
-            settings.setSyncOnData(true);
             enableData(context, true);
             MainFunctions.showNotification(context, settings, context.getString(R.string.running_account_sync));
          }
@@ -281,6 +280,17 @@ public class DataToggler extends BroadcastReceiver {
          public void run() {
             // wait a bit for wifi to connect, and if not connected, connect mobile data
             BatteryFu.checkApnDroid(context, settings);
+
+            if (forceSync) {
+               if (Utils.isNetworkConnected(context)) {
+                  // do the sync now
+                  MainFunctions.startSync(context);
+               } else {
+                  // sync once connected
+                  settings.setSyncOnData(true);
+               }
+            }
+
             if (!settings.isDataOn()) {
                // save data state
                settings.setDataStateOn(true);
@@ -314,31 +324,6 @@ public class DataToggler extends BroadcastReceiver {
                   Log.d("BatteryFu", "Wifi toggling disabled");
                   connectMobileData(context, settings);
                }
-            }
-
-            // set flag if sync should run
-            if (forceSync) {
-               if (Utils.isNetworkConnected(context)) {
-                  // do the sync now
-                  MainFunctions.startSync(context);
-               } else {
-                  settings.setSyncOnData(true);
-
-                  // I don't trust Android to consistently notify of data
-                  // connection, so let's also make a manual check
-                  try {
-                     Thread.sleep(20 * 1000);
-                  } catch (InterruptedException e) {
-                  }
-
-                  if (settings.isSyncOnData()) {
-                     Log.d("BatteryFu", "Manually running sync after timeout");
-                     MainFunctions.startSync(context);
-                     settings.setSyncOnData(false);
-                  }
-               }
-            } else {
-               settings.setSyncOnData(false);
             }
          }
       }.start();

@@ -90,7 +90,7 @@ public class GeneralReceiver extends BroadcastReceiver {
                   startup(context, context.getString(R.string.started_on_boot));
                }
             } else if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
-               Log.d("BatteryFu", "Connectivity changed");
+               Log.d("BatteryFu", "Connectivity changed " + settings.isSyncOnData());
                // network state change
                if (Utils.isNetworkConnected(context) && settings.isSyncOnData()) {
                   Log.d("BatteryFu", "Network connected, starting sync");
