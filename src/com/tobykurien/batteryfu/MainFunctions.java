@@ -287,7 +287,7 @@ public class MainFunctions {
             long nextSyncTime = lastWakeTime + (Long.parseLong(settings.getSleepTime()) * 60 * 1000);
             if (nextSyncTime > System.currentTimeMillis()) {
                SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
-               message = context.getString(R.string.data_disabled_next_sync_at_) + sdf.format(new Date(nextSyncTime));
+               message = context.getString(R.string.data_disabled_next_sync_at_) + " " + sdf.format(new Date(nextSyncTime));
             }
          } catch (Exception e) {
             Utils.handleException("BatteryFu", context, e);
