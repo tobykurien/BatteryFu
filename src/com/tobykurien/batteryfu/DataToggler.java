@@ -113,7 +113,7 @@ public class DataToggler extends BroadcastReceiver {
          } else if ("onlinemode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Online mode enable");
             MainFunctions.teardownDataAlarms(context, null);
-            enableData(context, false);
+            enableData(context, false, true); // enable mobile and wifi when going into online mode
             MainFunctions.showNotification(context, settings, context.getString(R.string.data_enabled_online_mode_activated));
          } else if ("sync://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Performing sync");
@@ -259,6 +259,11 @@ public class DataToggler extends BroadcastReceiver {
 
    // Enable wifi and mobile data
    static void enableData(final Context context, boolean forceSync) {
+      enableData(context, forceSync, false);
+   }
+   
+   // Enable wifi and mobile data   
+   static void enableData(final Context context, boolean forceSync, boolean forceMobile) {
       Log.i("BatteryFu", "DataToggler enabling data");
       NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -279,25 +284,30 @@ public class DataToggler extends BroadcastReceiver {
             wm.startScan();
             wm.reconnect();
 
-            // wait a bit for wifi to connect
-            new AsyncTask<Void, Void, Boolean>() {
-               @Override
-               protected Boolean doInBackground(Void... params) {
-                  try {
-                     Thread.sleep(10000);  // wait 10 seconds
-                  } catch (InterruptedException e) {
+            if (!forceMobile) {
+               // wait a bit for wifi to connect, and if not connected, connect mobile data
+               new AsyncTask<Void, Void, Boolean>() {
+                  @Override
+                  protected Boolean doInBackground(Void... params) {
+                     try {
+                        Thread.sleep(10000);  // wait 10 seconds
+                     } catch (InterruptedException e) {
+                     }
+                     
+                     if (wm.getConnectionInfo() == null || wm.getConnectionInfo().getNetworkId() < 0) {
+                        Log.i("BatteryFu", "Wifi not connected after timeout, enabling mobile data");
+                        connectMobileData(context, settings);
+                        return false;
+                     }
+                     
+                     return true;
                   }
-                  
-                  if (wm.getConnectionInfo() == null || wm.getConnectionInfo().getNetworkId() < 0) {
-                     Log.i("BatteryFu", "Wifi not connected after timeout, enabling mobile data");
-                     connectMobileData(context, settings);
-                     return false;
-                  }
-                  
-                  return true;
-               }
 
-            }.execute();
+               }.execute();
+            } else {
+               // also connect mobile data
+               connectMobileData(context, settings);
+            }
          } else {
             Log.d("BatteryFu", "Wifi toggling disabled");
             connectMobileData(context, settings);
