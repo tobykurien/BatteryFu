@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.tobykurien.android.Utils;
+import com.tobykurien.batteryfu.compat.Api17;
+import com.tobykurien.batteryfu.compat.Api3;
 import com.tobykurien.batteryfu.data_switcher.MobileDataSwitcher;
 
 public class DataToggler extends BroadcastReceiver {
@@ -42,8 +45,12 @@ public class DataToggler extends BroadcastReceiver {
             settings.setLastWakeTime(System.currentTimeMillis());
 
             // Check for airplane mode
-            boolean isAirplaneMode = android.provider.Settings.System.getInt(context.getContentResolver(),
-                     android.provider.Settings.System.AIRPLANE_MODE_ON, 0) == 1;
+            boolean isAirplaneMode = false;
+            if (Integer.parseInt(Build.VERSION.SDK) < 17) {
+               isAirplaneMode = Api3.isAirplaneMode(context);
+            } else {
+               isAirplaneMode = Api17.isAirplaneMode(context);
+            }
 
             enableData(context, true);
             if (!isAirplaneMode) {
@@ -112,6 +119,7 @@ public class DataToggler extends BroadcastReceiver {
             MainFunctions.showNotification(context, settings, context.getString(R.string.data_enabled_online_mode_activated));
          } else if ("sync://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Performing sync");
+            settings.setSyncOnData(true);
             enableData(context, true);
             MainFunctions.showNotification(context, settings, context.getString(R.string.running_account_sync));
          }
@@ -230,9 +238,8 @@ public class DataToggler extends BroadcastReceiver {
          }
       }
 
-      new AsyncTask<Void, Void, Void>() {
-         @Override
-         protected Void doInBackground(Void... params) {
+      new Thread() {
+         public void run() {
             context.getContentResolver().cancelSync(null);
 
             // save data state
@@ -252,11 +259,8 @@ public class DataToggler extends BroadcastReceiver {
             } else {
                Log.d("BatteryFu", "Wifi toggling disabled");
             }
-            
-            return null;
-         }
-      }.execute();
-      
+         };
+      }.start();
 
       return true;
    }
@@ -272,9 +276,9 @@ public class DataToggler extends BroadcastReceiver {
       final NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
       final Settings settings = Settings.getSettings(context);
 
-      new AsyncTask<Void, Void, Void>() {
+      new Thread() {
          @Override
-         protected Void doInBackground(Void... params) {
+         public void run() {
             // wait a bit for wifi to connect, and if not connected, connect mobile data
             BatteryFu.checkApnDroid(context, settings);
             if (!settings.isDataOn()) {
@@ -336,10 +340,8 @@ public class DataToggler extends BroadcastReceiver {
             } else {
                settings.setSyncOnData(false);
             }
-
-            return null;
          }
-      }.execute();
+      }.start();
    }
 
    private static void connectMobileData(final Context context, final Settings settings) {
