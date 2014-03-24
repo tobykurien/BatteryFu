@@ -200,10 +200,10 @@ public class DataToggler extends BroadcastReceiver {
    }
 
    // Disable wifi and mobile data
-   static boolean disableData(Context context, boolean force) {
+   static boolean disableData(final Context context, boolean force) {
       Log.i("BatteryFu", "DataToggler disabling data");
 
-      Settings settings = Settings.getSettings(context);
+      final Settings settings = Settings.getSettings(context);
       BatteryFu.checkApnDroid(context, settings);
       if (!force) {
          // if (!settings.isDataOn()) {
@@ -230,25 +230,33 @@ public class DataToggler extends BroadcastReceiver {
          }
       }
 
-      context.getContentResolver().cancelSync(null);
+      new AsyncTask<Void, Void, Void>() {
+         @Override
+         protected Void doInBackground(Void... params) {
+            context.getContentResolver().cancelSync(null);
 
-      // save data state
-      settings.setDataStateOn(false);
-      settings.setSyncOnData(false);
+            // save data state
+            settings.setDataStateOn(false);
+            settings.setSyncOnData(false);
 
-      if (settings.isMobileDataEnabled()) {
-         MobileDataSwitcher.disableMobileData(context, settings);
-      } else {
-         Log.d("BatteryFu", "Mobile data toggling disabled");
-      }
+            if (settings.isMobileDataEnabled()) {
+               MobileDataSwitcher.disableMobileData(context, settings);
+            } else {
+               Log.d("BatteryFu", "Mobile data toggling disabled");
+            }
 
-      if (settings.isWifiEnabled()) {
-         WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-         wm.disconnect();
-         wm.setWifiEnabled(false);
-      } else {
-         Log.d("BatteryFu", "Wifi toggling disabled");
-      }
+            if (settings.isWifiEnabled()) {
+               WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+               wm.disconnect();
+               wm.setWifiEnabled(false);
+            } else {
+               Log.d("BatteryFu", "Wifi toggling disabled");
+            }
+            
+            return null;
+         }
+      }.execute();
+      
 
       return true;
    }
