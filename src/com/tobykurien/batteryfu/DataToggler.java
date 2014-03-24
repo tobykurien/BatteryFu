@@ -20,6 +20,7 @@ import com.tobykurien.batteryfu.data_switcher.MobileDataSwitcher;
 public class DataToggler extends BroadcastReceiver {
    public static final int NOTIFICATION_CONNECTIVITY = 1;
 
+   @SuppressWarnings("deprecation")
    @Override
    public void onReceive(Context context, Intent intent) {
       Log.d("BatteryFu", "DataToggler received broadcast");
@@ -130,7 +131,7 @@ public class DataToggler extends BroadcastReceiver {
 
    private void nightModeOn(Context context, Settings settings) {
       settings.setIsNightmode(true);
-      settings.setIsTravelMode(false);
+      //settings.setIsTravelMode(false);
 
       AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
       MainFunctions.teardownDataAlarms(context, am);
