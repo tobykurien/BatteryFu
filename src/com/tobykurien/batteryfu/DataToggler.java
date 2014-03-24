@@ -282,7 +282,7 @@ public class DataToggler extends BroadcastReceiver {
                settings.setDataStateOn(true);
 
                // clear any previous notifications
-               nm.cancel(NOTIFICATION_CONNECTIVITY);
+               //nm.cancel(NOTIFICATION_CONNECTIVITY);
 
                // enable wifi
                if (settings.isWifiEnabled() && !settings.isTravelMode()) {
