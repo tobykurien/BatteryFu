@@ -35,19 +35,15 @@ public class DataToggler extends BroadcastReceiver {
 
       // Main BatteryFu functionality - turn data on when woken up by system
       try {
-         if (handleWidgetBroadcasts(context, intent, settings)) {
-            return;
-         }
+         if (handleWidgetBroadcasts(context, intent, settings)) { return; }
 
-         if ("data://wake".equals(intent.getDataString()) ||
-             "data://on".equals(intent.getDataString())) {
+         if ("data://wake".equals(intent.getDataString()) || "data://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Data enable");
             settings.setLastWakeTime(System.currentTimeMillis());
 
             // Check for airplane mode
             boolean isAirplaneMode = android.provider.Settings.System.getInt(context.getContentResolver(),
-                     android.provider.Settings.System.AIRPLANE_MODE_ON,
-                     0) == 1;
+                     android.provider.Settings.System.AIRPLANE_MODE_ON, 0) == 1;
 
             enableData(context, true);
             if (!isAirplaneMode) {
@@ -57,9 +53,8 @@ public class DataToggler extends BroadcastReceiver {
                // keep the notification running
                MainFunctions.showNotification(context, settings, context.getString(R.string.airplane_mode_is_on));
             }
-         } else if ("data://sleep".equals(intent.getDataString()) || 
-                    "data://sleep_once".equals(intent.getDataString()) ||
-                    "data://off".equals(intent.getDataString())) {
+         } else if ("data://sleep".equals(intent.getDataString()) || "data://sleep_once".equals(intent.getDataString())
+                  || "data://off".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Data disable");
             if (disableData(context, false)) {
                MainFunctions.showNotificationWaitingForSync(context, settings);
@@ -89,20 +84,19 @@ public class DataToggler extends BroadcastReceiver {
             MainFunctions.startScheduler(context, false);
          } else if ("travelmode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Travel mode enable");
-            if (!settings.isTravelMode()) {
-               // make sure scheduler is started
-               MainFunctions.startScheduler(context, false);
-               if (settings.isWifiEnabled()) {
-                  // disable wifi for travel mode
-                  WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-                  wm.disconnect();
-                  wm.setWifiEnabled(false);
+            // make sure scheduler is started
+            MainFunctions.startScheduler(context, false);
+            if (settings.isWifiEnabled()) {
+               // disable wifi for travel mode
+               WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+               wm.disconnect();
+               wm.setWifiEnabled(false);
 
-                  settings.setIsTravelMode(true);
-                  MainFunctions.showNotification(context, settings, context.getString(R.string.wifi_disabled_travel_mode_activated));
-               } else {
-                  MainFunctions.showNotification(context, settings, context.getString(R.string.wifi_toggling_not_enabled_standard_mode_activated));
-               }
+               settings.setIsTravelMode(true);
+               MainFunctions.showNotification(context, settings, context.getString(R.string.wifi_disabled_travel_mode_activated));
+            } else {
+               MainFunctions.showNotification(context, settings,
+                        context.getString(R.string.wifi_toggling_not_enabled_standard_mode_activated));
             }
          } else if ("offlinemode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Offline mode enable");
@@ -113,7 +107,8 @@ public class DataToggler extends BroadcastReceiver {
          } else if ("onlinemode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Online mode enable");
             MainFunctions.teardownDataAlarms(context, null);
-            enableData(context, false, true); // enable mobile and wifi when going into online mode
+            enableData(context, false, true); // enable mobile and wifi when
+                                              // going into online mode
             MainFunctions.showNotification(context, settings, context.getString(R.string.data_enabled_online_mode_activated));
          } else if ("sync://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Performing sync");
@@ -223,11 +218,12 @@ public class DataToggler extends BroadcastReceiver {
          }
 
          if (settings.isScreenOnKeepData() && ScreenService.isScreenOn(context)) {
-            //MainFunctions.showNotification(context, settings, "Data kept on, waiting for screen to switch off");
+            // MainFunctions.showNotification(context, settings,
+            // "Data kept on, waiting for screen to switch off");
             settings.setDisconnectOnScreenOff(true);
             return false;
          }
-         
+
          if (settings.isDataWhileScreenOn() && ScreenService.isScreenOn(context)) {
             MainFunctions.showNotification(context, settings, context.getString(R.string.data_switched_on_while_screen_is_on));
             return false;
@@ -261,82 +257,81 @@ public class DataToggler extends BroadcastReceiver {
    static void enableData(final Context context, boolean forceSync) {
       enableData(context, forceSync, false);
    }
-   
-   // Enable wifi and mobile data   
-   static void enableData(final Context context, boolean forceSync, boolean forceMobile) {
+
+   // Enable wifi and mobile data
+   static void enableData(final Context context, final boolean forceSync, final boolean forceMobile) {
       Log.i("BatteryFu", "DataToggler enabling data");
-      NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
+      final NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
       final Settings settings = Settings.getSettings(context);
-      BatteryFu.checkApnDroid(context, settings);
-      if (!settings.isDataOn()) {
-         // save data state
-         settings.setDataStateOn(true);
 
-         // clear any previous notifications
-         nm.cancel(NOTIFICATION_CONNECTIVITY);
+      new AsyncTask<Void, Void, Void>() {
+         @Override
+         protected Void doInBackground(Void... params) {
+            // wait a bit for wifi to connect, and if not connected, connect mobile data
+            BatteryFu.checkApnDroid(context, settings);
+            if (!settings.isDataOn()) {
+               // save data state
+               settings.setDataStateOn(true);
 
-         // enable wifi
-         if (settings.isWifiEnabled() && !settings.isTravelMode()) {
-            Log.i("BatteryFu", "DataToggler enabling wifi");
-            final WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            wm.setWifiEnabled(true);
-            wm.startScan();
-            wm.reconnect();
+               // clear any previous notifications
+               nm.cancel(NOTIFICATION_CONNECTIVITY);
 
-            if (!forceMobile) {
-               // wait a bit for wifi to connect, and if not connected, connect mobile data
-               new AsyncTask<Void, Void, Boolean>() {
-                  @Override
-                  protected Boolean doInBackground(Void... params) {
+               // enable wifi
+               if (settings.isWifiEnabled() && !settings.isTravelMode()) {
+                  Log.i("BatteryFu", "DataToggler enabling wifi");
+                  final WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                  wm.setWifiEnabled(true);
+                  wm.startScan();
+                  wm.reconnect();
+
+                  if (!forceMobile) {
                      try {
-                        Thread.sleep(10000);  // wait 10 seconds
+                        Thread.sleep(10000); // wait 10 seconds
                      } catch (InterruptedException e) {
                      }
-                     
+
                      if (wm.getConnectionInfo() == null || wm.getConnectionInfo().getNetworkId() < 0) {
                         Log.i("BatteryFu", "Wifi not connected after timeout, enabling mobile data");
                         connectMobileData(context, settings);
-                        return false;
                      }
-                     
-                     return true;
+                  } else {
+                     // also connect mobile data
+                     connectMobileData(context, settings);
+                  }
+               } else {
+                  Log.d("BatteryFu", "Wifi toggling disabled");
+                  connectMobileData(context, settings);
+               }
+            }
+
+            // set flag if sync should run
+            if (forceSync) {
+               if (Utils.isNetworkConnected(context)) {
+                  // do the sync now
+                  MainFunctions.startSync(context);
+               } else {
+                  settings.setSyncOnData(true);
+
+                  // I don't trust Android to consistently notify of data
+                  // connection, so let's also make a manual check
+                  try {
+                     Thread.sleep(20 * 1000);
+                  } catch (InterruptedException e) {
                   }
 
-               }.execute();
-            } else {
-               // also connect mobile data
-               connectMobileData(context, settings);
-            }
-         } else {
-            Log.d("BatteryFu", "Wifi toggling disabled");
-            connectMobileData(context, settings);
-         }
-      }
-
-      // set flag if sync should run
-      if (forceSync) {
-         if (Utils.isNetworkConnected(context)) {
-            // do the sync now
-            MainFunctions.startSync(context);
-         } else {
-            settings.setSyncOnData(true);
-
-            // I don't trust Android to consistently notify of data connection,
-            // so let's also make a manual check
-            Utils.waitNonBlocking(15, new Runnable() {
-               public void run() {
                   if (settings.isSyncOnData()) {
                      Log.d("BatteryFu", "Manually running sync after timeout");
                      MainFunctions.startSync(context);
                      settings.setSyncOnData(false);
                   }
                }
-            });
+            } else {
+               settings.setSyncOnData(false);
+            }
+
+            return null;
          }
-      } else {
-         settings.setSyncOnData(false);
-      }
+      }.execute();
    }
 
    private static void connectMobileData(final Context context, final Settings settings) {
