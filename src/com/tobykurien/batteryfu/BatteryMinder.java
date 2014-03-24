@@ -79,7 +79,7 @@ public class BatteryMinder extends ActivityBase {
       // add wakelock info
       String kwlog = "";
       Map<String, ? extends Timer> m = bstat.getKernelWakelockStats();
-      for (String key : m.keySet()) {
+      if (m != null) for (String key : m.keySet()) {
          long time = bstat.getTotalTimeLocked(m.get(key), rawRealtime, which);
          // only show stuff that's wakelocked for more than 30 minutes
          if (toSecs(time) > MIN_WAKE_LOCK_SECS) kwlog += "\r\n" + key + " = " + timeFormat(time);
