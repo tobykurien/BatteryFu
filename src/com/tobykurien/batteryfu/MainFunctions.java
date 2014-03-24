@@ -288,6 +288,9 @@ public class MainFunctions {
             if (nextSyncTime > System.currentTimeMillis()) {
                SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
                message = context.getString(R.string.data_disabled_next_sync_at_) + " " + sdf.format(new Date(nextSyncTime));
+               if (settings.isTravelMode()) {
+                  message += " [" + context.getString(R.string.mode_travel_short) + "]";
+               }
             }
          } catch (Exception e) {
             Utils.handleException("BatteryFu", context, e);

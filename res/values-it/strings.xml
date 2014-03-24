@@ -80,6 +80,7 @@ APNdroid non è stato trovato, o è aggiornato ad una versione troppo vecchia. P
     <string name="mode_start_night_mode">Avvia modalità notte</string>
     <string name="mode_stop_night_mode">Ferma modalità notte</string>
     <string name="mode_travel">Viaggio (wifi off)</string>
+    <string name="mode_travel_short">Viaggio</string>
     <string name="mode_batteryminder">BatteryMinder</string>
     
 </resources>

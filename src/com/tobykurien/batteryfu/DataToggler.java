@@ -101,10 +101,11 @@ public class DataToggler extends BroadcastReceiver {
                wm.setWifiEnabled(false);
 
                settings.setIsTravelMode(true);
-               MainFunctions.showNotification(context, settings, context.getString(R.string.wifi_disabled_travel_mode_activated));
-            } else {
-               MainFunctions.showNotification(context, settings,
-                        context.getString(R.string.wifi_toggling_not_enabled_standard_mode_activated));
+//               MainFunctions.showNotification(context, settings, context.getString(R.string.wifi_disabled_travel_mode_activated));
+//            } else {
+//               MainFunctions.showNotification(context, settings,
+//                        context.getString(R.string.wifi_toggling_not_enabled_standard_mode_activated));
+               MainFunctions.showNotificationWaitingForSync(context, settings);
             }
          } else if ("offlinemode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Offline mode enable");

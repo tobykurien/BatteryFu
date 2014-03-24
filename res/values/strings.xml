@@ -98,6 +98,7 @@ for mobile data toggling.
     <string name="mode_start_night_mode">Start night mode</string>
     <string name="mode_stop_night_mode">Stop night mode</string>
     <string name="mode_travel">Travel (wifi off)</string>
+    <string name="mode_travel_short">Travel</string>
     <string name="mode_batteryminder">BatteryMinder</string>
     
 </resources>
