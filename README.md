@@ -6,6 +6,36 @@ BatteryFu (pronounced Battery-Foo, like in Kung-Fu) is an Android app that exten
 Google Play Store link:
 https://play.google.com/store/apps/details?id=com.tobykurien.batteryfu
 
+Integration
+===========
+
+You can control BatteryFu from another app by broadcasting Intents. The Intents should have their 
+action set to ```batteryfu.intent.action.TOGGLE```, and the action URI is used to specify that to 
+toggle, for example ```data://on``` to enable data, and ```data://off``` to disable it. Here is an example:
+
+```java
+// turn data on
+Intent intent = new Intent();
+intent.setAction("batteryfu.intent.action.TOGGLE");
+intent.setData(Uri.parse("data://on"));
+sendBroadcast(intent);
+```
+Other schemes you can toggle are:
+
+- ```batteryfu``` - enable/disable BatteryFu
+- ```nightmode``` - enable/disable nightmode
+- ```travelmode``` - enable travel mode
+- ```standardmode``` - enable standard mode
+- ```offlinemode``` - enable "always offline" mode
+- ```onlinemode``` - enable "always online" mode
+- ```sync``` - perform a data sync, turn data on if necessary
+- ```data``` - enable/disable data (mobile and/or wifi, depending on settings)
+
+See the 
+[Intent filter](https://github.com/tobykurien/BatteryFu/blob/master/AndroidManifest.xml#L69)
+in the AndroidManifest.xml file for the full list of intent schemes.
+
+
 Dependencies
 ============
 
