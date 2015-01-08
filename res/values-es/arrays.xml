@@ -2,19 +2,19 @@
 <resources>
 
     <string-array name="sleep_time_labels">
-        <item>15 minutes</item>
-        <item>20 minutes</item>
-        <item>30 minutes</item>
-        <item>45 minutes</item>
-        <item>1 hour</item>
-        <item>2 hours</item>
-        <item>3 hours</item>
-        <item>4 hours</item>
-        <item>6 hours</item>
-        <item>8 hours</item>
-        <item>10 hours</item>
-        <item>12 hours</item>
-        <item>24 hours</item>
+        <item>15 minutos</item>
+        <item>20 minutos</item>
+        <item>30 minutos</item>
+        <item>45 minutos</item>
+        <item>1 hora</item>
+        <item>2 horas</item>
+        <item>3 horas</item>
+        <item>4 horas</item>
+        <item>6 horas</item>
+        <item>8 horas</item>
+        <item>10 horas</item>
+        <item>12 horas</item>
+        <item>24 horas</item>
     </string-array>
     <string-array name="sleep_time_values">
         <item>15</item>
@@ -32,13 +32,13 @@
         <item>1440</item>
     </string-array>
     <string-array name="awake_time_labels">
-        <item>2 minutes</item>
-        <item>3 minutes</item>
-        <item>4 minutes</item>
-        <item>5 minutes</item>
-        <item>7 minutes</item>
-        <item>10 minutes</item>
-        <item>15 minutes</item>
+        <item>2 minutos</item>
+        <item>3 minutos</item>
+        <item>4 minutos</item>
+        <item>5 minutos</item>
+        <item>7 minutos</item>
+        <item>10 minutos</item>
+        <item>15 minutos</item>
     </string-array>
     <string-array name="awake_time_values">
         <item>2</item>
@@ -50,14 +50,14 @@
         <item>15</item>
     </string-array>
     <string-array name="screen_off_time_labels">
-        <item>immediately</item>
-        <item>5 seconds</item>
-        <item>10 seconds</item>
-        <item>20 seconds</item>
-        <item>30 seconds</item>
-        <item>1 minute</item>
-        <item>2 minutes</item>
-        <item>5 minutes</item>
+        <item>inmediatamente</item>
+        <item>5 segundos</item>
+        <item>10 segundos</item>
+        <item>20 segundos</item>
+        <item>30 segundos</item>
+        <item>1 minuto</item>
+        <item>2 minutos</item>
+        <item>5 minutos</item>
     </string-array>
     <string-array name="screen_off_time_values">
         <item>0</item>
@@ -71,13 +71,13 @@
     </string-array>
     <string-array name="mode_select">
         <!-- These must match exactly to the mode names in strings.xml -->
-        <item>Standard</item>
-        <item>Travel (wifi off)</item>
-        <item>Go online now</item>
-        <item>Always online</item>
-        <item>Always offline</item>
-        <item>Start night mode</item>
-        <item>Stop night mode</item>
-        <item>BatteryMinder</item>
+        <item>Estándar</item>
+        <item>Viaje (WiFi desactivada)</item>
+        <item>Ir en línea ahora</item>
+        <item>Siempre en línea</item>
+        <item>Siempre fuera de línea</item>
+        <item>Iniciar modo nocturno</item>
+        <item>Parar modo nocturno</item>
+        <item>Baterecordatorio</item>
     </string-array>
 </resources>
