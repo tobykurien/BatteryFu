@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BatteryFu</string>
+    <string name="app_name">BateríaFu</string>
     <string name="mode_select">Select BatteryFu Mode</string>
 
     <string name="about_label">About</string>
