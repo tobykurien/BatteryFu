@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BateríaFu</string>
-    <string name="mode_select">Select BatteryFu Mode</string>
+    <string name="mode_select">Seleccionar modo de BateríaFu</string>
 
-    <string name="about_label">About</string>
+    <string name="about_label">Acerca de</string>
     <string name="exit_label">Exit</string>
 
-    <string name="about_title">About BatteryFu</string>
+    <string name="about_title">Acerca de BateríaFu</string>
     <string name="about_text">
-BatteryFu extends your phone battery life by disabling your 
+BateríaFu extends your phone battery life by disabling your 
 data connection(s) and then periodically enabling them 
 for syncs (email checks etc). Always-on mobile data consumes
 a lot of battery power, especially when travelling or when the cellular 
@@ -26,9 +26,9 @@ from the Market listing for BatteryFu.
 Created by <b>Toby Kurien</b>
     </string>
 
-    <string name="apn_problem_title">APN Problem</string>
+    <string name="apn_problem_title">Problema de APN</string>
     <string name="apn_problem_text">
-BatteryFu has detected a problem with your APN settings. It is possible 
+BateríaFu has detected a problem with your APN settings. It is possible 
 that you are on a CDMA network,  that you have only one access point 
 that is also used for MMS, or some other app like APNdroid has disabled 
 your APN. Please see the website for details. 
@@ -37,27 +37,27 @@ If you haven\'t already, it is recommended that you install the APNdroid app
 from the market, after which BatteryFu will use it automatically for mobile 
 data toggling. 
 \n\n
-BatteryFu will now continue as normal although it may not be as effective 
+BateríaFu will now continue as normal although it may not be as effective 
 (or indeed work at all).
     </string>
     
-    <string name="apndroid_error_title">APNdroid error</string>
+    <string name="apndroid_error_title">Error de APNdroid</string>
     <string name="apndroid_error_text">
 APNdroid was not found, or is an old version. Please search the Market 
 for the latest version of APNdroid and install it, in order to use it 
 for toggling mobile data. Otherwise, untick the option to use APNdroid 
 for mobile data toggling.    
     </string>
-    <string name="title_battery_minder">BatteryMinder</string>
-    <string name="title_general_stats">General Stats</string>
+    <string name="title_battery_minder">Baterecordatorio</string>
+    <string name="title_general_stats">Estadísticas generales</string>
     <string name="title_kernel_wakelocks">Kernel Wakelocks</string>
     <string name="title_cpu_stats">CPU Stats</string>
     <string name="bm_battery_usage">Battery Usage</string>
     <string name="requires_android_1_6">Requires Android 1.6 or above</string>
     <string name="not_needed_on_this_device">Not needed on this device</string>
-    <string name="btn_ok">Ok</string>
-    <string name="batteryfu_started">BatteryFu started</string>
-    <string name="batteryfu_stopped">BatteryFu stopped</string>
+    <string name="btn_ok">Sí</string>
+    <string name="batteryfu_started">BateríaFu comenzado</string>
+    <string name="batteryfu_stopped">BateríaFu parado</string>
     <string name="error_cpu_stats">"ERROR: Unable to get CPU stats: "</string>
     <string name="cpu_sleep">CPU sleep</string>
     <string name="screen_on_time">Screen on time</string>
@@ -86,19 +86,19 @@ for mobile data toggling.
     <string name="data_switched_on_while_screen_is_unlocked">Data switched on while screen is unlocked</string>
     <string name="started_on_boot">Started on boot</string>
     <string name="data_connected_running_sync">Data connected, running sync</string>
-    <string name="starting">Starting...</string>
+    <string name="starting">Iniciando...</string>
     <string name="data_enabled_until_next_night_mode_start">Data enabled until night mode</string>
     <string name="data_disabled_waiting_for_next_sync">Data disabled, waiting for sync</string>
     <string name="data_disabled_next_sync_at_">Next sync at</string>
-    <string name="settings">Settings</string>
-    <string name="mode_always_offline">Always offline</string>
-    <string name="mode_always_online">Always online</string>
-    <string name="mode_standard">Standard</string>
-    <string name="mode_go_online_now">Go online now</string>
-    <string name="mode_start_night_mode">Start night mode</string>
-    <string name="mode_stop_night_mode">Stop night mode</string>
-    <string name="mode_travel">Travel (wifi off)</string>
-    <string name="mode_travel_short">Travel</string>
-    <string name="mode_batteryminder">BatteryMinder</string>
+    <string name="settings">Ajustes</string>
+    <string name="mode_always_offline">Siempre fuera de línea</string>
+    <string name="mode_always_online">Siempre en línea</string>
+    <string name="mode_standard">Estándar</string>
+    <string name="mode_go_online_now">Ir en línea ahora</string>
+    <string name="mode_start_night_mode">Iniciar modo nocturno</string>
+    <string name="mode_stop_night_mode">Parar modo nocturno</string>
+    <string name="mode_travel">Viaje (WiFi desactivada)</string>
+    <string name="mode_travel_short">Viaje</string>
+    <string name="mode_batteryminder">Baterecordatorio</string>
     
 </resources>
