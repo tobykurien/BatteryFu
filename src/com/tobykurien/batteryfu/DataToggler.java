@@ -212,56 +212,10 @@ public class DataToggler extends BroadcastReceiver {
    static boolean disableData(final Context context, boolean force) {
       Log.i("BatteryFu", "DataToggler disabling data");
 
-      final Settings settings = Settings.getSettings(context);
-      BatteryFu.checkApnDroid(context, settings);
-      if (!force) {
-         // if (!settings.isDataOn()) {
-         // MainFunctions.showNotification(context, settings,
-         // "DEBUG: Data is already off");
-         // return true;
-         // }
-
-         if (settings.isDataWhileCharging() && settings.isCharging()) {
-            MainFunctions.showNotification(context, settings, context.getString(R.string.data_switched_on_while_charging));
-            return false;
-         }
-
-         if (settings.isScreenOnKeepData() && ScreenService.isScreenOn(context)) {
-            // MainFunctions.showNotification(context, settings,
-            // "Data kept on, waiting for screen to switch off");
-            settings.setDisconnectOnScreenOff(true);
-            return false;
-         }
-
-         if (settings.isDataWhileScreenOn() && ScreenService.isScreenOn(context)) {
-            MainFunctions.showNotification(context, settings, context.getString(R.string.data_switched_on_while_screen_is_on));
-            return false;
-         }
-      }
-
-      new Thread() {
-         public void run() {
-            context.getContentResolver().cancelSync(null);
-
-            // save data state
-            settings.setDataStateOn(false);
-            settings.setSyncOnData(false);
-
-            if (settings.isMobileDataEnabled()) {
-               MobileDataSwitcher.disableMobileData(context, settings);
-            } else {
-               Log.d("BatteryFu", "Mobile data toggling disabled");
-            }
-
-            if (settings.isWifiEnabled()) {
-               WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-               wm.disconnect();
-               wm.setWifiEnabled(false);
-            } else {
-               Log.d("BatteryFu", "Wifi toggling disabled");
-            }
-         };
-      }.start();
+       Intent intent = new Intent(context, DataService.class);
+       intent.putExtra("action", "disable");
+       intent.putExtra("force", force);
+       context.startService(intent);
 
       return true;
    }
@@ -274,69 +228,12 @@ public class DataToggler extends BroadcastReceiver {
    // Enable wifi and mobile data
    static void enableData(final Context context, final boolean forceSync, final boolean forceMobile) {
       Log.i("BatteryFu", "DataToggler enabling data");
-      final NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-      final Settings settings = Settings.getSettings(context);
-
-      new Thread() {
-         @Override
-         public void run() {
-            // wait a bit for wifi to connect, and if not connected, connect mobile data
-            BatteryFu.checkApnDroid(context, settings);
-
-            if (forceSync) {
-               if (Utils.isNetworkConnected(context)) {
-                  // do the sync now
-                  MainFunctions.startSync(context);
-               } else {
-                  // sync once connected
-                  settings.setSyncOnData(true);
-               }
-            }
-
-            if (!settings.isDataOn()) {
-               // save data state
-               settings.setDataStateOn(true);
-
-               // clear any previous notifications
-               //nm.cancel(NOTIFICATION_CONNECTIVITY);
-
-               // enable wifi
-               if (settings.isWifiEnabled() && !settings.isTravelMode()) {
-                  Log.i("BatteryFu", "DataToggler enabling wifi");
-                  final WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-                  wm.setWifiEnabled(true);
-                  wm.startScan();
-                  wm.reconnect();
-
-                  if (!forceMobile) {
-                     try {
-                        Thread.sleep(10000); // wait 10 seconds
-                     } catch (InterruptedException e) {
-                     }
-
-                     if (wm.getConnectionInfo() == null || wm.getConnectionInfo().getNetworkId() < 0) {
-                        Log.i("BatteryFu", "Wifi not connected after timeout, enabling mobile data");
-                        connectMobileData(context, settings);
-                     }
-                  } else {
-                     // also connect mobile data
-                     connectMobileData(context, settings);
-                  }
-               } else {
-                  Log.d("BatteryFu", "Wifi toggling disabled");
-                  connectMobileData(context, settings);
-               }
-            }
-         }
-      }.start();
+       Intent intent = new Intent(context, DataService.class);
+       intent.putExtra("action", "enable");
+       intent.putExtra("force", forceSync);
+       intent.putExtra("forceMobile", forceMobile);
+       context.startService(intent);
    }
 
-   private static void connectMobileData(final Context context, final Settings settings) {
-      // turn on mobile data
-      if (settings.isMobileDataEnabled()) {
-         MobileDataSwitcher.enableMobileData(context, settings);
-      } else {
-         Log.d("BatteryFu", "Mobile data toggling disabled");
-      }
-   }
+
 }

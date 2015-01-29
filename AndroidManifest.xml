@@ -116,6 +116,8 @@
 
         <service android:name=".ScreenService" >
         </service>
+        <service android:name=".DataService">
+        </service>
     </application>
 
 </manifest>
