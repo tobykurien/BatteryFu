@@ -4,7 +4,7 @@
     <string name="mode_select">Seleccionar modo de BateríaFu</string>
 
     <string name="about_label">Acerca de</string>
-    <string name="exit_label">Exit</string>
+    <string name="exit_label">Salir</string>
 
     <string name="about_title">Acerca de BateríaFu</string>
     <string name="about_text">
@@ -51,14 +51,14 @@ for mobile data toggling.
     <string name="title_battery_minder">Baterecordatorio</string>
     <string name="title_general_stats">Estadísticas generales</string>
     <string name="title_kernel_wakelocks">Kernel Wakelocks</string>
-    <string name="title_cpu_stats">CPU Stats</string>
-    <string name="bm_battery_usage">Battery Usage</string>
-    <string name="requires_android_1_6">Requires Android 1.6 or above</string>
-    <string name="not_needed_on_this_device">Not needed on this device</string>
+    <string name="title_cpu_stats">Estadísticas de la CPU</string>
+    <string name="bm_battery_usage">Uso de la batería</string>
+    <string name="requires_android_1_6">Requiere Android 1.6 o superior</string>
+    <string name="not_needed_on_this_device">No es necesario en este dispositivo</string>
     <string name="btn_ok">Sí</string>
     <string name="batteryfu_started">BateríaFu comenzado</string>
     <string name="batteryfu_stopped">BateríaFu parado</string>
-    <string name="error_cpu_stats">"ERROR: Unable to get CPU stats: "</string>
+    <string name="error_cpu_stats">"ERROR: No es posible obtener estadísticas de CPU: "</string>
     <string name="cpu_sleep">CPU sleep</string>
     <string name="screen_on_time">Screen on time</string>
     <string name="battery_usage_while_screen_off">Battery usage while screen off</string>
