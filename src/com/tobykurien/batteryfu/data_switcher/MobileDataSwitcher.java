@@ -26,14 +26,14 @@ public abstract class MobileDataSwitcher {
                 return lollipop;
             }
         }
-      if (Integer.parseInt(Build.VERSION.SDK) >= 14) {
+      if ((Build.VERSION.SDK_INT >= 14) && (Build.VERSION.SDK_INT < 19)) {
          if (ics.isToggleWorking(context) == 0) {
             //Toast.makeText(context, "Using ICS switcher", Toast.LENGTH_LONG).show();
             return ics;
          }
       }
       
-	   if (Integer.parseInt(Build.VERSION.SDK) >= 9) {
+	   if ((Build.VERSION.SDK_INT >= 9) && (Build.VERSION.SDK_INT < 14)) {
 	      if (gb.isToggleWorking(context) == 0) {
             //Toast.makeText(context, "Using Gingerbread switcher", Toast.LENGTH_LONG).show();
 	         return gb;

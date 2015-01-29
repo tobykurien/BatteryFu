@@ -35,16 +35,16 @@ public class LollipopSwitcher extends MobileDataSwitcher {
             try {
                 p.waitFor();
                 if (p.exitValue() != 255) {
-                    Log.d("BatteryFu", "Enabled Mobile Data");
+                    Log.d("BatteryFu", "LollipopSwitcher: Enabled Mobile Data");
                 }
                 else {
-                    Log.d("BatteryFu", "Error enabling mobile data");
+                    Log.d("BatteryFu", "LollipopSwitcher: Error enabling mobile data");
                 }
             } catch (InterruptedException e) {
-                Log.d("BatteryFu", "Error enabling mobile data");
+                Log.d("BatteryFu", "LollipopSwitcher: Error enabling mobile data");
             }
         } catch (IOException e) {
-            Log.d("BatteryFu", "Error enabling mobile data");
+            Log.d("BatteryFu", "LollipopSwitcher: Error enabling mobile data");
         }
 
     }
@@ -63,16 +63,16 @@ public class LollipopSwitcher extends MobileDataSwitcher {
             try {
                 p.waitFor();
                 if (p.exitValue() != 255) {
-                    Log.d("BatteryFu", "Disabled Mobile Data");
+                    Log.d("BatteryFu", "LollipopSwitcher: Disabled Mobile Data");
                 }
                 else {
-                    Log.d("BatteryFu", "Error disabling mobile data");
+                    Log.d("BatteryFu", "LollipopSwitcher: Error disabling mobile data");
                 }
             } catch (InterruptedException e) {
-                Log.d("BatteryFu", "Error disabling mobile data");
+                Log.d("BatteryFu", "LollipopSwitcher: Error disabling mobile data");
             }
         } catch (IOException e) {
-            Log.d("BatteryFu", "Error disabling mobile data");
+            Log.d("BatteryFu", "LollipopSwitcher: Error disabling mobile data");
         }
     }
 
@@ -97,23 +97,18 @@ public class LollipopSwitcher extends MobileDataSwitcher {
             try {
                 p.waitFor();
                 if (p.exitValue() != 255) {
-                    // TODO Code to run on success
-                    Log.d("BatteryFu", "Successfully got root rights in init!");
+                    Log.d("BatteryFu", "LollipopSwitcher: Successfully got root rights in init!");
                     return true;
                 }
                 else {
-                    // TODO Code to run on unsuccessful
-                    Log.d("BatteryFu", "Error gaining root access");
+                    Log.d("BatteryFu", "LollipopSwitcher: Error gaining root access");
                 }
             } catch (InterruptedException e) {
-                // TODO Code to run in interrupted exception
-                Log.d("BatteryFu", "Error gaining root access");
+                Log.d("BatteryFu", "LollipopSwitcher: Error gaining root access");
             }
         } catch (IOException e) {
-            // TODO Code to run in input/output exception
-            Log.d("BatteryFu", "Error gaining root access");
+            Log.d("BatteryFu", "LollipopSwitcher: Error gaining root access");
         }
-        Log.d("BatteryFu", "return false in init");
         return false;
     }
 
