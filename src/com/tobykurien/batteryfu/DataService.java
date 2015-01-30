@@ -23,13 +23,12 @@ public class DataService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         boolean force = intent.getBooleanExtra("force", false);
-        final Context context = getApplicationContext();
-        final Settings settings = Settings.getSettings(context);
+        final Settings settings = Settings.getSettings(this);
 
 
         if(intent.getStringExtra("action").equals("disable"))
         {
-            BatteryFu.checkApnDroid(context, settings);
+            BatteryFu.checkApnDroid(this, settings);
             if (!force) {
                 // if (!settings.isDataOn()) {
                 // MainFunctions.showNotification(context, settings,
@@ -38,37 +37,37 @@ public class DataService extends IntentService {
                 // }
 
                 if (settings.isDataWhileCharging() && settings.isCharging()) {
-                    MainFunctions.showNotification(context, settings, context.getString(R.string.data_switched_on_while_charging));
+                    MainFunctions.showNotification(this, settings, this.getString(R.string.data_switched_on_while_charging));
                     return;
                 }
 
-                if (settings.isScreenOnKeepData() && ScreenService.isScreenOn(context)) {
+                if (settings.isScreenOnKeepData() && ScreenService.isScreenOn(this)) {
                     // MainFunctions.showNotification(context, settings,
                     // "Data kept on, waiting for screen to switch off");
                     settings.setDisconnectOnScreenOff(true);
                     return;
                 }
 
-                if (settings.isDataWhileScreenOn() && ScreenService.isScreenOn(context)) {
-                    MainFunctions.showNotification(context, settings, context.getString(R.string.data_switched_on_while_screen_is_on));
+                if (settings.isDataWhileScreenOn() && ScreenService.isScreenOn(this)) {
+                    MainFunctions.showNotification(this, settings, context.getString(R.string.data_switched_on_while_screen_is_on));
                     return;
                 }
             }
 
-            context.getContentResolver().cancelSync(null);
+            this.getContentResolver().cancelSync(null);
 
             // save data state
             settings.setDataStateOn(false);
             settings.setSyncOnData(false);
 
             if (settings.isMobileDataEnabled()) {
-                MobileDataSwitcher.disableMobileData(context, settings);
+                MobileDataSwitcher.disableMobileData(this, settings);
             } else {
                 Log.d("BatteryFu", "Mobile data toggling disabled");
             }
 
             if (settings.isWifiEnabled()) {
-                WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                WifiManager wm = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
                 wm.disconnect();
                 wm.setWifiEnabled(false);
             } else {
@@ -78,15 +77,15 @@ public class DataService extends IntentService {
         else if(intent.getStringExtra("action").equals("enable"))
         {
             boolean forceMobile = intent.getBooleanExtra("forceMobile", false);
-            final NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            final NotificationManager nm = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
             // wait a bit for wifi to connect, and if not connected, connect mobile data
-            BatteryFu.checkApnDroid(context, settings);
+            BatteryFu.checkApnDroid(this, settings);
 
             if (force) {
-                if (Utils.isNetworkConnected(context)) {
+                if (Utils.isNetworkConnected(this)) {
                     // do the sync now
-                    MainFunctions.startSync(context);
+                    MainFunctions.startSync(this);
                 } else {
                     // sync once connected
                     settings.setSyncOnData(true);
@@ -103,7 +102,7 @@ public class DataService extends IntentService {
                 // enable wifi
                 if (settings.isWifiEnabled() && !settings.isTravelMode()) {
                     Log.i("BatteryFu", "DataToggler enabling wifi");
-                    final WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                    final WifiManager wm = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
                     wm.setWifiEnabled(true);
                     wm.startScan();
                     wm.reconnect();
@@ -116,15 +115,15 @@ public class DataService extends IntentService {
 
                         if (wm.getConnectionInfo() == null || wm.getConnectionInfo().getNetworkId() < 0) {
                             Log.i("BatteryFu", "Wifi not connected after timeout, enabling mobile data");
-                            connectMobileData(context, settings);
+                            connectMobileData(this, settings);
                         }
                     } else {
                         // also connect mobile data
-                        connectMobileData(context, settings);
+                        connectMobileData(this, settings);
                     }
                 } else {
                     Log.d("BatteryFu", "Wifi toggling disabled");
-                    connectMobileData(context, settings);
+                    connectMobileData(this, settings);
                 }
             }
         }
