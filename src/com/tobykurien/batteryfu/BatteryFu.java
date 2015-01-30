@@ -23,6 +23,7 @@ import com.tobykurien.batteryfu.data_switcher.APNSwitcher;
 import com.tobykurien.batteryfu.data_switcher.GingerbreadSwitcher;
 import com.tobykurien.batteryfu.data_switcher.ICSSwitcher;
 import com.tobykurien.batteryfu.data_switcher.MobileDataSwitcher;
+import com.tobykurien.batteryfu.data_switcher.LollipopSwitcher;
 
 public class BatteryFu extends PreferenceActivity {
    public static final String LOG_TAG = "BatteryFu";
@@ -208,14 +209,17 @@ public class BatteryFu extends PreferenceActivity {
    }
 
    public static void checkApnDroid(Context context, Settings settings) {
+       Log.d("BatteryFu", "checkApnDroid");
       MobileDataSwitcher switcher = MobileDataSwitcher.getSwitcher(context, settings);
+       Log.d("BatteryFu", "after getSwitcher");
       if (switcher instanceof GingerbreadSwitcher ||
-          switcher instanceof ICSSwitcher) {
+          switcher instanceof ICSSwitcher ||
+          switcher instanceof LollipopSwitcher) {
          // on gingerbread/ICS, we won't worry about ApnDroid
          settings.setUseApnDroid(false);
          return;
       }
-      
+
       if (APNDroidSwitcher.isApnDroidInstalled(context)) {
          if (!settings.isUseApndroid()) {
             // APNDroid installed, use it by default

@@ -12,6 +12,7 @@ public abstract class MobileDataSwitcher {
 	public static MobileDataSwitcher apndroid = new APNDroidSwitcher();
    public static MobileDataSwitcher gb = new GingerbreadSwitcher();
    public static MobileDataSwitcher ics = new ICSSwitcher();
+    public static MobileDataSwitcher lollipop = new LollipopSwitcher();
 	
 	/**
 	 * Get the right mobile data switcher
@@ -19,14 +20,20 @@ public abstract class MobileDataSwitcher {
 	 * @return
 	 */
 	public static MobileDataSwitcher getSwitcher(Context context, Settings settings) {
-      if (Integer.parseInt(Build.VERSION.SDK) >= 14) {
+        if(Build.VERSION.SDK_INT >= 19) {
+            if(lollipop.isToggleWorking(context) == 0) {
+                //Toast.makeText(context, "Using Lollipop switcher", Toast.LENGTH_LONG).show();
+                return lollipop;
+            }
+        }
+      if ((Build.VERSION.SDK_INT >= 14) && (Build.VERSION.SDK_INT < 19)) {
          if (ics.isToggleWorking(context) == 0) {
             //Toast.makeText(context, "Using ICS switcher", Toast.LENGTH_LONG).show();
             return ics;
          }
       }
       
-	   if (Integer.parseInt(Build.VERSION.SDK) >= 9) {
+	   if ((Build.VERSION.SDK_INT >= 9) && (Build.VERSION.SDK_INT < 14)) {
 	      if (gb.isToggleWorking(context) == 0) {
             //Toast.makeText(context, "Using Gingerbread switcher", Toast.LENGTH_LONG).show();
 	         return gb;
