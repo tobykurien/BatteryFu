@@ -49,7 +49,7 @@ public class DataService extends IntentService {
                 }
 
                 if (settings.isDataWhileScreenOn() && ScreenService.isScreenOn(this)) {
-                    MainFunctions.showNotification(this, settings, context.getString(R.string.data_switched_on_while_screen_is_on));
+                    MainFunctions.showNotification(this, settings, this.getString(R.string.data_switched_on_while_screen_is_on));
                     return;
                 }
             }
@@ -101,7 +101,7 @@ public class DataService extends IntentService {
 
                 // enable wifi
                 if (settings.isWifiEnabled() && !settings.isTravelMode()) {
-                    Log.i("BatteryFu", "DataToggler enabling wifi");
+                    Log.i("BatteryFu", "DataToggler enabling WiFi");
                     final WifiManager wm = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
                     wm.setWifiEnabled(true);
                     wm.startScan();

@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.os.Build;
+import com.tobykurien.batteryfu.compat.Api7;
+import com.tobykurien.batteryfu.compat.Api20;
 
 public class ScreenService extends Service {
 	private GeneralReceiver generalReceiver;
@@ -30,7 +33,7 @@ public class ScreenService extends Service {
         filter.addAction(Intent.ACTION_USER_PRESENT);
         generalReceiver = new GeneralReceiver();
         setScreenOn(getApplicationContext(), true);
-        registerReceiver(generalReceiver, filter);		
+        registerReceiver(generalReceiver, filter);
 	}
 	
 	@Override
@@ -41,21 +44,28 @@ public class ScreenService extends Service {
 			unregisterReceiver(generalReceiver);
 		} catch (Exception e) {			
 		}
-
 		super.onDestroy();
 	}
 
 	public static boolean isScreenOn(Context context) {
-		SharedPreferences pref = PreferenceManager
-		.getDefaultSharedPreferences(context);
-		return pref.getBoolean("screen_state_on", false);
-		
-		//return screenOn;
+        boolean ret;
+        if(Build.VERSION.SDK_INT >= 20)
+        {
+            ret = Api20.isScreenOn(context);
+        }
+        else if(Build.VERSION.SDK_INT >= 7)
+        {
+            ret = Api7.isScreenOn(context);
+        }
+        else {
+            Settings settings = Settings.getSettings(context);
+            ret = settings.getScreenOnOff();
+        }
+        return ret;
 	}
 
 	public static void setScreenOn(Context context, boolean screenOn) {
-		SharedPreferences pref = PreferenceManager
-		.getDefaultSharedPreferences(context);
-		pref.edit().putBoolean("screen_state_on", screenOn).commit();
+        Settings settings = Settings.getSettings(context);
+        settings.setScreenOnOff(screenOn);
 	}
 }

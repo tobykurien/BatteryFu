@@ -1,21 +1,17 @@
 package com.tobykurien.batteryfu;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.tobykurien.android.Utils;
 import com.tobykurien.batteryfu.compat.Api17;
 import com.tobykurien.batteryfu.compat.Api3;
-import com.tobykurien.batteryfu.data_switcher.MobileDataSwitcher;
 
 public class DataToggler extends BroadcastReceiver {
    public static final int NOTIFICATION_CONNECTIVITY = 1;

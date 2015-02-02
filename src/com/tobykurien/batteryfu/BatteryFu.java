@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +38,12 @@ public class BatteryFu extends PreferenceActivity {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       Log.i("BatteryFu", "Loading on API level " + android.os.Build.VERSION.SDK);
+
+       PreferenceManager pm = getPreferenceManager();
+       if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
+           pm.setSharedPreferencesMode(MODE_MULTI_PROCESS);
+       pm.setSharedPreferencesName(Settings.PREFS_NAME);
+
 
       // Show the preferences screen
       try {
@@ -209,9 +216,7 @@ public class BatteryFu extends PreferenceActivity {
    }
 
    public static void checkApnDroid(Context context, Settings settings) {
-       Log.d("BatteryFu", "checkApnDroid");
       MobileDataSwitcher switcher = MobileDataSwitcher.getSwitcher(context, settings);
-       Log.d("BatteryFu", "after getSwitcher");
       if (switcher instanceof GingerbreadSwitcher ||
           switcher instanceof ICSSwitcher ||
           switcher instanceof LollipopSwitcher) {
@@ -219,14 +224,14 @@ public class BatteryFu extends PreferenceActivity {
          settings.setUseApnDroid(false);
          return;
       }
-
       if (APNDroidSwitcher.isApnDroidInstalled(context)) {
          if (!settings.isUseApndroid()) {
             // APNDroid installed, use it by default
             settings.setUseApnDroid(true);
          }
       } else {
-         if (settings.isUseApndroid()) settings.setUseApnDroid(false);
+         if (settings.isUseApndroid())
+             settings.setUseApnDroid(false);
       }
    }
 
