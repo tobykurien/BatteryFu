@@ -69,7 +69,10 @@ public class ModeSelect extends Activity {
             } else if (isNightmodeOff(mode)) {
                i.setData(Uri.parse("nightmode://off"));               
             } else if (isSync(mode)) {
-               i.setData(Uri.parse("data://on"));               
+               i.setData(Uri.parse("data://on"));
+                Settings settings = Settings.getSettings(ModeSelect.this);
+                if(settings.isScreenOnKeepData())
+                    settings.setDisconnectOnScreenOff(true);
             } else if (mode.equals(getString(R.string.settings))) {
                showSettings();
                return;
