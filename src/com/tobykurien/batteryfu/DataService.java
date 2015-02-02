@@ -20,10 +20,15 @@ public class DataService extends IntentService {
         Log.d("BatteryFu", "Starting DataService to handle command");
     }
 
+    public static final int NOTIFICATION_TYPE_NONE = 0;
+    public static final int NOTIFICATION_TYPE_OFFLINE_MODE = 1;
+    public static final int NOTIFICATION_TYPE_WAITING_FOR_SYNC = 2;
+
     @Override
     protected void onHandleIntent(Intent intent) {
         boolean force = intent.getBooleanExtra("force", false);
         final Settings settings = Settings.getSettings(this);
+        final int notificationType = intent.getIntExtra("notificationType", NOTIFICATION_TYPE_NONE);
 
 
         if(intent.getStringExtra("action").equals("disable"))
@@ -72,6 +77,16 @@ public class DataService extends IntentService {
                 wm.setWifiEnabled(false);
             } else {
                 Log.d("BatteryFu", "Wifi toggling disabled");
+            }
+            switch(notificationType)
+            {
+                case NOTIFICATION_TYPE_OFFLINE_MODE:
+                    MainFunctions.showNotification(this, settings, getString(R.string.data_disabled_offline_mode_activated));
+                    break;
+                case NOTIFICATION_TYPE_WAITING_FOR_SYNC:
+                    break;
+                case NOTIFICATION_TYPE_NONE:
+                    break;
             }
         }
         else if(intent.getStringExtra("action").equals("enable"))

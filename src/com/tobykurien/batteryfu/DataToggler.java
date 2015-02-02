@@ -60,9 +60,7 @@ public class DataToggler extends BroadcastReceiver {
          } else if ("data://sleep".equals(intent.getDataString()) || "data://sleep_once".equals(intent.getDataString())
                   || "data://off".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Data disable");
-            if (disableData(context, false)) {
-               MainFunctions.showNotificationWaitingForSync(context, settings);
-            }
+            disableData(context, false, DataService.NOTIFICATION_TYPE_WAITING_FOR_SYNC);
          } else if ("nightmode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Night mode enable");
             if (!settings.isNightmode()) {
@@ -106,9 +104,7 @@ public class DataToggler extends BroadcastReceiver {
          } else if ("offlinemode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Offline mode enable");
             MainFunctions.teardownDataAlarms(context, null);
-            if (disableData(context, true)) {
-               MainFunctions.showNotification(context, settings, context.getString(R.string.data_disabled_offline_mode_activated));
-            }
+            disableData(context, true, DataService.NOTIFICATION_TYPE_OFFLINE_MODE);
          } else if ("onlinemode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Online mode enable");
             MainFunctions.teardownDataAlarms(context, null);
@@ -192,25 +188,25 @@ public class DataToggler extends BroadcastReceiver {
       return false;
    }
 
-   /**
-    * Ensure that the screen service is running
-    * 
-    * @param context
-    * @param pref
-    */
    static void ensureScreenService(Context context) {
       // start the service for screen on
       Intent srvInt = new Intent(context, ScreenService.class);
       context.startService(srvInt);
    }
 
+    static boolean disableData(final Context context, boolean force)
+    {
+        return disableData(context, force, DataService.NOTIFICATION_TYPE_NONE);
+    }
+
    // Disable wifi and mobile data
-   static boolean disableData(final Context context, boolean force) {
+   static boolean disableData(final Context context, boolean force, final int notificationType) {
       Log.i("BatteryFu", "DataToggler disabling data");
 
        Intent intent = new Intent(context, DataService.class);
        intent.putExtra("action", "disable");
        intent.putExtra("force", force);
+       intent.putExtra("notificationType", notificationType);
        context.startService(intent);
 
       return true;
