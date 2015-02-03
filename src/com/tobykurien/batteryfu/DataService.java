@@ -84,6 +84,7 @@ public class DataService extends IntentService {
                     MainFunctions.showNotification(this, settings, getString(R.string.data_disabled_offline_mode_activated));
                     break;
                 case NOTIFICATION_TYPE_WAITING_FOR_SYNC:
+                    MainFunctions.showNotificationWaitingForSync(this, settings);
                     break;
                 case NOTIFICATION_TYPE_NONE:
                     break;
