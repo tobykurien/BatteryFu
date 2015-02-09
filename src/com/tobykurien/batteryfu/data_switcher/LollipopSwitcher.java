@@ -78,7 +78,6 @@ public class LollipopSwitcher extends MobileDataSwitcher {
 
     @Override
     public int isToggleWorking(Context context) {
-        Log.d("BatteryFu", "isToggleWorking");
         if(init(context))
             return 0;
         else
@@ -86,7 +85,6 @@ public class LollipopSwitcher extends MobileDataSwitcher {
     }
 
     public boolean init(Context context) {
-        Log.d("BatteryFu", "init in LollipopSwitcher");
         try {
             // Perform su to get root priviledges
             Process p = Runtime.getRuntime().exec("su");

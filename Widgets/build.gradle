@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.5.+'
+        classpath 'com.android.tools.build:gradle:1.0.0'
     }
 }
 
@@ -11,7 +11,7 @@ apply plugin: 'android-library'
 
 android {
     compileSdkVersion 18
-    buildToolsVersion "19"
+    buildToolsVersion "19.1"
 
     dependencies {
       compile fileTree(dir: 'libs', includes: ['*.jar'])

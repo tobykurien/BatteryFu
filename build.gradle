@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.5.+'
+        classpath 'com.android.tools.build:gradle:1.0.0'
     }
 }
 
@@ -14,8 +14,8 @@ task wrapper(type: Wrapper) {
 }
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion "19"
+    compileSdkVersion 20
+    buildToolsVersion "20"
 
 
     dependencies {
