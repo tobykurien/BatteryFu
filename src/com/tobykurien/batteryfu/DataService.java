@@ -2,6 +2,7 @@ package com.tobykurien.batteryfu;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
@@ -59,7 +60,7 @@ public class DataService extends IntentService {
                 }
             }
 
-            this.getContentResolver().cancelSync(null);
+			ContentResolver.cancelSync(null, null);
 
             // save data state
             settings.setDataStateOn(false);

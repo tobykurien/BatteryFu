@@ -6,8 +6,8 @@
     android:versionName="1.45" >
 
     <uses-sdk
-        android:minSdkVersion="3"
-        android:targetSdkVersion="10" />
+        android:minSdkVersion="5"
+        android:targetSdkVersion="21" />
 
     <uses-feature
         android:name="android.hardware.wifi"

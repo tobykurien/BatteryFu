@@ -36,7 +36,7 @@ public class MainFunctions {
       MainFunctions.showNotification(context, settings, context.getString(R.string.starting));
 
       // cancel account syncs
-      context.getContentResolver().cancelSync(null);
+      ContentResolver.cancelSync(null, null);
       
       // let our widget know we're up
       Intent active = new Intent(context, ToggleWidget.class);
