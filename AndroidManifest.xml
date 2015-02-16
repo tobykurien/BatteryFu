@@ -64,8 +64,7 @@
         
         <!-- The data toggling receiver -->
         <receiver
-            android:name=".DataToggler"
-            android:process=":remote" >
+            android:name=".DataToggler">
             <intent-filter>
                 <action android:name="batteryfu.intent.action.TOGGLE" />
 

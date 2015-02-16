@@ -179,17 +179,17 @@ public class BatteryMinder extends ActivityBase {
   }
    
   public static void checkBattery(Context context) {
-     Settings settings = Settings.getSettings(context);
-
      SharedPreferences pref =  PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
      
-     long lastRun = settings.getLastRun();
+     long lastRun = pref.getLong("last_run", 0);
      
      if (System.currentTimeMillis() - lastRun < 1000*60*10) {
         // too soon to check
         return;
      }
+
      
-     settings.setLastRun(System.currentTimeMillis());
+     
+     pref.edit().putLong("last_run", System.currentTimeMillis()).commit();
   }
 }
