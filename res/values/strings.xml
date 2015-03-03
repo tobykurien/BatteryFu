@@ -100,5 +100,5 @@ for mobile data toggling.
     <string name="mode_travel">Travel (wifi off)</string>
     <string name="mode_travel_short">Travel</string>
     <string name="mode_batteryminder">BatteryMinder</string>
-    
+    <string name="need_root_text">On Android 5+, BatteryFu needs root to toggle mobile data.</string>
 </resources>

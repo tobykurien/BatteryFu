@@ -82,5 +82,5 @@ APNdroid non è stato trovato, o è aggiornato ad una versione troppo vecchia. P
     <string name="mode_travel">Viaggio (wifi off)</string>
     <string name="mode_travel_short">Viaggio</string>
     <string name="mode_batteryminder">BatteryMinder</string>
-    
+    <string name="need_root_text">Su Android 5+, BatteryFu bisogno di root per passare dati mobili.</string>    
 </resources>

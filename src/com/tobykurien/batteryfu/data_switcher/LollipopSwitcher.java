@@ -81,7 +81,7 @@ public class LollipopSwitcher extends MobileDataSwitcher {
         if(init(context))
             return 0;
         else
-            return R.string.apn_problem_text;
+            return R.string.need_root_text;
     }
 
     public boolean init(Context context) {
