@@ -48,3 +48,4 @@ Credits
 =======
 
 - Italian translation by Emanuele Brown
+- Android 5 support added by https://github.com/andyboeh
