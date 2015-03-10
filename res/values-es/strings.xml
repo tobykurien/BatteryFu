@@ -8,22 +8,26 @@
 
     <string name="about_title">Acerca de BateríaFu</string>
     <string name="about_text">
-BateríaFu extends your phone battery life by disabling your 
-data connection(s) and then periodically enabling them 
-for syncs (email checks etc). Always-on mobile data consumes
-a lot of battery power, especially when travelling or when the cellular 
-signal is weak.
-\n\n 
-You can use the <i>Data while screen on</i> 
-feature to access the internet automatically while using your phone. Use the 
-<i>Night mode</i> feature to save even more battery and data while you are asleep.
-You can save even more battery power by enabling the <i>Use only 2G networks</i> 
-option in your Android settings.
+BateríaFu extiende la duración de tu batería mediante la 
+desactivación de la conexión de datos, y luego, 
+periódicamente activarla para sincronizar (correo, etc).
+Si siempre conectado, tu dispositivo consume una gran 
+cantidad de batería, especialmente cuando tu viajas o 
+cuando la señal celular está débil.
 \n\n
-Please see the website for details, optimal settings, FAQs, etc. The website is accessible 
-from the Market listing for BatteryFu.
+Puedes usar la característica <i>Data while screen on</i>
+para acceder a la Internet automáticamente mientras que 
+usas tu dispositivo. Usa la característica 
+<i>Modo nocturno</i> para conservar aún más batería 
+durante que duermas. Puedes conservar aún más batería 
+mediante activar la opción <i>Utilizar sólo redes 2G</i>
+en los ajustes de tu Android.
 \n\n
-Created by <b>Toby Kurien</b>
+Por favor, consulte el sitio Web para obtener más información, 
+los ajustes óptimos, preguntas frecuentes, etc. Puedes acceder 
+al sitio vía Play Store.
+\n\n
+Creado por <b>Toby Kurien</b>
     </string>
 
     <string name="apn_problem_title">Problema de APN</string>
