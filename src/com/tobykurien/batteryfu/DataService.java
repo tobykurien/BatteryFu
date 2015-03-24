@@ -129,6 +129,12 @@ public class DataService extends IntentService {
 				// clear any previous notifications
 				nm.cancel(DataToggler.NOTIFICATION_CONNECTIVITY);
 
+				MainFunctions
+				.showNotification(
+						this,
+						settings,
+						this.getString(R.string.data_enabled_waiting_for_connection));
+
 				// enable wifi
 				if (settings.isWifiEnabled() && !settings.isTravelMode()) {
 					Log.i("BatteryFu", "DataToggler enabling WiFi");
