@@ -57,8 +57,8 @@ APNdroid non è stato trovato, o è aggiornato ad una versione troppo vecchia. P
     <string name="airplane_mode_is_on">Modalità offline attivata</string>
     <string name="data_while_screen_on_night_mode_cancelled">Dati attivi con schermo attivo, modalità notte fermata</string>
     <string name="night_mode_ended_starting_sync">Modalità notte terminata, in attesa di sinc.</string>
-    <string name="wifi_disabled_travel_mode_activated">Wifi spento. Modalità viaggio attivata.</string>
-    <string name="wifi_toggling_not_enabled_standard_mode_activated">Commutazione Wifi non attiva. Modalità Standard attivata.</string>
+    <string name="wifi_disabled_travel_mode_activated">Wi-Fi spento. Modalità viaggio attivata.</string>
+    <string name="wifi_toggling_not_enabled_standard_mode_activated">Commutazione Wi-Fi non attiva. Modalità Standard attivata.</string>
     <string name="data_disabled_offline_mode_activated">Dati disabilitati. Modalità offline attivata.</string>
     <string name="data_enabled_online_mode_activated">Dati attivati. Modalità online attivata.</string>
     <string name="running_account_sync">Sicronizzazione account in corso.</string>
