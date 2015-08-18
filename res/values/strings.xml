@@ -75,8 +75,8 @@ for mobile data toggling.
     <string name="airplane_mode_is_on">Airplane mode is on</string>
     <string name="data_while_screen_on_night_mode_cancelled">Data while screen on, night mode cancelled</string>
     <string name="night_mode_ended_starting_sync">Night mode ended, starting sync</string>
-    <string name="wifi_disabled_travel_mode_activated">Wifi disabled. Travel mode activated.</string>
-    <string name="wifi_toggling_not_enabled_standard_mode_activated">Wifi toggling not enabled. Standard mode activated.</string>
+    <string name="wifi_disabled_travel_mode_activated">Wi-Fi disabled. Travel mode activated.</string>
+    <string name="wifi_toggling_not_enabled_standard_mode_activated">Wi-Fi toggling not enabled. Standard mode activated.</string>
     <string name="data_disabled_offline_mode_activated">Data disabled. Offline mode activated.</string>
     <string name="data_enabled_online_mode_activated">Data enabled. Online mode activated.</string>
     <string name="running_account_sync">Running account sync.</string>
