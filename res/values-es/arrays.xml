@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sleep_time_labels">
+        <item>15 minutos</item>
+        <item>20 minutos</item>
+        <item>30 minutos</item>
+        <item>45 minutos</item>
+        <item>1 hora</item>
+        <item>2 horas</item>
+        <item>3 horas</item>
+        <item>4 horas</item>
+        <item>6 horas</item>
+        <item>8 horas</item>
+        <item>10 horas</item>
+        <item>12 horas</item>
+        <item>24 horas</item>
+    </string-array>
+    <string-array name="sleep_time_values">
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>240</item>
+        <item>360</item>
+        <item>480</item>
+        <item>600</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+    <string-array name="awake_time_labels">
+        <item>2 minutos</item>
+        <item>3 minutos</item>
+        <item>4 minutos</item>
+        <item>5 minutos</item>
+        <item>7 minutos</item>
+        <item>10 minutos</item>
+        <item>15 minutos</item>
+    </string-array>
+    <string-array name="awake_time_values">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+    <string-array name="screen_off_time_labels">
+        <item>inmediatamente</item>
+        <item>5 segundos</item>
+        <item>10 segundos</item>
+        <item>20 segundos</item>
+        <item>30 segundos</item>
+        <item>1 minuto</item>
+        <item>2 minutos</item>
+        <item>5 minutos</item>
+    </string-array>
+    <string-array name="screen_off_time_values">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>300</item>
+    </string-array>
+    <string-array name="mode_select">
+        <!-- These must match exactly to the mode names in strings.xml -->
+        <item>Estándar</item>
+        <item>Viaje (WiFi desactivada)</item>
+        <item>Ir en línea ahora</item>
+        <item>Siempre en línea</item>
+        <item>Siempre fuera de línea</item>
+        <item>Iniciar modo nocturno</item>
+        <item>Parar modo nocturno</item>
+        <item>Baterecordatorio</item>
+    </string-array>
+</resources>
