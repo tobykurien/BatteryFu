@@ -15,7 +15,7 @@ Si siempre conectado, tu dispositivo consume una gran
 cantidad de batería, especialmente cuando tu viajas o 
 cuando la señal celular está débil.
 \n\n
-Puedes usar la característica <i>Data while screen on</i>
+Puedes usar la característica <i>Datos activados cuando pantalla está apagada</i>
 para acceder a la Internet automáticamente mientras que 
 usas tu dispositivo. Usa la característica 
 <i>Modo nocturno</i> para conservar aún más batería 
@@ -32,29 +32,30 @@ Creado por <b>Toby Kurien</b>
 
     <string name="apn_problem_title">Problema de APN</string>
     <string name="apn_problem_text">
-BateríaFu has detected a problem with your APN settings. It is possible 
-that you are on a CDMA network,  that you have only one access point 
-that is also used for MMS, or some other app like APNdroid has disabled 
-your APN. Please see the website for details. 
+BateríaFu ha detectado un problema con la configuración de APN. 
+Es posible que tú estás en una red CDMA, que sólo tienes un punto 
+de acceso que también se utiliza para MMS, o alguna otra aplicación 
+como APNdroid ha inhabilitado tu APN. Por favor, consulte el 
+sitio web para más detalles. 
 \n\n
-If you haven\'t already, it is recommended that you install the APNdroid app 
-from the market, after which BatteryFu will use it automatically for mobile 
-data toggling. 
+Si no lo has hecho, te recomienda que instales la aplicación APNdroid 
+desde el Play Store, después de lo cual BateríaFu lo utilizará 
+automáticamente para alternar los datos móviles.
 \n\n
-BateríaFu will now continue as normal although it may not be as effective 
-(or indeed work at all).
+BateríaFu continuará ahora de forma normal, aunque puede no ser tan 
+eficaz (o incluso trabajar en absoluto).
     </string>
     
     <string name="apndroid_error_title">Error de APNdroid</string>
     <string name="apndroid_error_text">
-APNdroid was not found, or is an old version. Please search the Market 
-for the latest version of APNdroid and install it, in order to use it 
-for toggling mobile data. Otherwise, untick the option to use APNdroid 
-for mobile data toggling.    
+APNdroid no se encontró, o es una versión antigua. Por favor, instale la 
+última versión de Play Store, para usarlo para alternar los datos móviles. 
+De lo contrario, desactive la opción de utilizar APNdroid para alternar 
+los datos móviles.
     </string>
     <string name="title_battery_minder">Baterecordatorio</string>
     <string name="title_general_stats">Estadísticas generales</string>
-    <string name="title_kernel_wakelocks">Kernel Wakelocks</string>
+    <string name="title_kernel_wakelocks">Wakelocks de kernel</string>
     <string name="title_cpu_stats">Estadísticas de la CPU</string>
     <string name="bm_battery_usage">Uso de la batería</string>
     <string name="requires_android_1_6">Requiere Android 1.6 o superior</string>
@@ -63,33 +64,33 @@ for mobile data toggling.
     <string name="batteryfu_started">BateríaFu comenzado</string>
     <string name="batteryfu_stopped">BateríaFu parado</string>
     <string name="error_cpu_stats">"ERROR: No es posible obtener estadísticas de CPU: "</string>
-    <string name="cpu_sleep">CPU sleep</string>
-    <string name="screen_on_time">Screen on time</string>
-    <string name="battery_usage_while_screen_off">Uso de la batería, mientras pantalla apagada</string>
+    <string name="cpu_sleep">Sueño de CPU</string>
+    <string name="screen_on_time">Tiempo durante el cual la pantalla está apagada</string>
+    <string name="battery_usage_while_screen_off">Uso de la batería, mientras pantalla está apagada</string>
     <string name="battery_level">Nivel de la batería</string>
-    <string name="background_cpu_usage">Background CPU usage (experimental)</string>
+    <string name="background_cpu_usage">Uso de la CPU en el fondo (experimental)</string>
     <string name="wakelocks_prevent_the_cpu_from_sleeping">Wakelocks impiden la CPU de dormir</string>
-    <string name="time_spend_at_various_cpu_speeds">Time spend at various CPU speeds</string>
+    <string name="time_spend_at_various_cpu_speeds">Tiempo gastado a varias velocidades de la CPU</string>
     <string name="error">"ERROR: "</string>
     <string name="suffix_days">"d "</string>
     <string name="suffix_hours">"h "</string>
     <string name="suffix_minutes">"m "</string>
     <string name="suffix_seconds">"s "</string>
-    <string name="data_enabled_waiting_for_connection">Data enabled, waiting for connection</string>
-    <string name="airplane_mode_is_on">Airplane mode is on</string>
-    <string name="data_while_screen_on_night_mode_cancelled">Data while screen on, night mode cancelled</string>
-    <string name="night_mode_ended_starting_sync">Night mode ended, starting sync</string>
-    <string name="wifi_disabled_travel_mode_activated">Wifi disabled. Moda viaje activada.</string>
-    <string name="wifi_toggling_not_enabled_standard_mode_activated">Wifi toggling not enabled. Moda estándar activada.</string>
-    <string name="data_disabled_offline_mode_activated">Datos desactivados. Moda fuera de línea activada.</string>
-    <string name="data_enabled_online_mode_activated">Datos activados. Moda en línea activada.</string>
+    <string name="data_enabled_waiting_for_connection">Datos activados, esperando para la conexión</string>
+    <string name="airplane_mode_is_on">Modo avión activado</string>
+    <string name="data_while_screen_on_night_mode_cancelled">Datos activados cuando pantalla está apagada, modo nocturno cancelado</string>
+    <string name="night_mode_ended_starting_sync">Modo nocturno parado, iniciando sincronización</string>
+    <string name="wifi_disabled_travel_mode_activated">Wifi desactivada. Modo de viaje activado.</string>
+    <string name="wifi_toggling_not_enabled_standard_mode_activated">WiFi alternar no está activado. Modo estándar activado.</string>
+    <string name="data_disabled_offline_mode_activated">Datos desactivados. Modo fuera de línea activado.</string>
+    <string name="data_enabled_online_mode_activated">Datos activados. Modo en línea activado.</string>
     <string name="running_account_sync">Sincronizando cuentas.</string>
-    <string name="data_disabled_night_mode_started">Data disabled, night mode started</string>
-    <string name="data_switched_on_while_charging">Data switched on while charging</string>
-    <string name="data_switched_on_while_screen_is_on">Data switched on while screen is on</string>
-    <string name="data_switched_on_while_screen_is_unlocked">Data switched on while screen is unlocked</string>
-    <string name="started_on_boot">Started on boot</string>
-    <string name="data_connected_running_sync">Data connected, running sync</string>
+    <string name="data_disabled_night_mode_started">Datos desactivados, modo nocturno activado</string>
+    <string name="data_switched_on_while_charging">Datos activados mientras cargar</string>
+    <string name="data_switched_on_while_screen_is_on">Datos activados cuando pantalla está apagada</string>
+    <string name="data_switched_on_while_screen_is_unlocked">Datos activados cuando pantalla está desbloqueada</string>
+    <string name="started_on_boot">Iniciado en el arranque</string>
+    <string name="data_connected_running_sync">Datos conectados, sincronizando</string>
     <string name="starting">Iniciando...</string>
     <string name="data_enabled_until_next_night_mode_start">Datos activados hasta el modo nocturno</string>
     <string name="data_disabled_waiting_for_next_sync">Datos desactivados, esperando para la sincronización</string>
