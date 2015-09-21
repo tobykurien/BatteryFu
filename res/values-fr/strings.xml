@@ -99,6 +99,6 @@ for mobile data toggling.
     <string name="mode_stop_night_mode">Arrêter le mode nuit</string>
     <string name="mode_travel">Voyage (Wi-Fi désactivé)</string>
     <string name="mode_travel_short">Voyage</string>
-    <string name="mode_batteryminder">BatteryMinder</string>-->
-    <string name="need_root_text">Sur Android 5+, BatteryFu a besoin du root pour activer/désactiver l'utilisation des données via le réseau mobile.</string>
+    <string name="mode_batteryminder">BatteryMinder</string>
+    <string name="need_root_text">Sur Android 5+, BatteryFu a besoin du root pour activer/désactiver l\'utilisation des données via le réseau mobile.</string>
 </resources>
