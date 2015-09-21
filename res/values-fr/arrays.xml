@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="sleep_time_labels">
         <item>15 minutes</item>
         <item>20 minutes</item>
@@ -37,12 +38,12 @@
     <string-array name="mode_select">
         <!-- These must match exactly to the mode names in strings.xml -->
         <item>Standard</item>
-        <item>Travel (wifi off)</item>
+        <item>Voyage (Wi-Fi désactivé)</item>
         <item>Go online now</item>
-        <item>Always online</item>
-        <item>Always offline</item>
-        <item>Start night mode</item>
-        <item>Stop night mode</item>
+        <item>Toujours connecté</item>
+        <item>Toujours déconnecté</item>
+        <item>Démarrer le mode nuit</item>
+        <item>Arrêter le mode nuit</item>
         <item>BatteryMinder</item>
     </string-array>
 </resources>
