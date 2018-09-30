@@ -4,7 +4,7 @@ BatteryFu
 BatteryFu (pronounced Battery-Foo, like in Kung-Fu) is an Android app that extends battery life (and lowers data usage) by changing always-on mobile/wifi data to periodic sync (meaning it disables your mobile data and/or Wifi, then checks your accounts every X minutes).
 
 - Available on [Google Play Store][play]
-- Also available on the [FDroid app store][fdroid]
+- Available on the [F-Droid App Store][fdroid]
 
 Integration
 ===========
@@ -51,4 +51,4 @@ Credits
 - Android 5 support added by https://github.com/andyboeh
 
  [play]: https://play.google.com/store/apps/details?id=com.tobykurien.batteryfu
- [fdroid]: https://f-droid.org/repository/browse/?fdfilter=batteryfu&fdid=com.tobykurien.batteryfu
+ [fdroid]: https://f-droid.org/packages/com.tobykurien.batteryfu/
