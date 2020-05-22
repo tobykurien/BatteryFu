@@ -11,8 +11,7 @@ public class Settings {
 	public static boolean DEBUG_NIGHT_MODE = false;
 	public static final String DEFAULT_NIGHT_MODE_END = "06:00";
 	public static final String DEFAULT_NIGHT_MODE_START = "22:00";
-	public final static int MIN_AWAKE_TIME = 2;
-	public static final String DEFAULT_AWAKE = "3";
+	public static final String DEFAULT_AWAKE = "180";
 	public static final String DEFAULT_SLEEP = "60";
 	public static int AWAKE_PERIOD = 0;
 	public static int SLEEP_PERIOD = 0;
