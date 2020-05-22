@@ -2,6 +2,8 @@
 <resources>
 
     <string-array name="sleep_time_labels">
+        <item>5 minuti</item>
+        <item>10 minuti</item>
         <item>15 minuti</item>
         <item>20 minuti</item>
         <item>30 minuti</item>
@@ -17,6 +19,8 @@
         <item>24 ore</item>
     </string-array>
     <string-array name="awake_time_labels">
+        <item>30 secondoi</item>
+        <item>1 minuto</item>
         <item>2 minuti</item>
         <item>3 minuti</item>
         <item>4 minuti</item>

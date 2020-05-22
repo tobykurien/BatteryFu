@@ -123,14 +123,11 @@ public class MainFunctions {
       Log.d("BatteryFu", "Sleep period: " + Settings.SLEEP_PERIOD);
 
       try {
-         int awake_time = Integer.parseInt(settings.getAwakeTime());
-         if (awake_time < Settings.MIN_AWAKE_TIME)
-            awake_time = Settings.MIN_AWAKE_TIME; // removed the 1 minute awake,
-                                                  // it's too short
-         Settings.AWAKE_PERIOD = 1000 * 60 * (awake_time);
+         Settings.AWAKE_PERIOD = 1000 * Integer.parseInt(settings.getAwakeTime());
       } catch (Exception ne) {
-         Settings.AWAKE_PERIOD = 1000 * 60 * Integer.parseInt(Settings.DEFAULT_AWAKE); // default
+         Settings.AWAKE_PERIOD = 1000 * Integer.parseInt(Settings.DEFAULT_AWAKE); // default
       }
+      Log.d("BatteryFu", "Awake period: " + Settings.AWAKE_PERIOD);
 
       if (Settings.DEBUG_NIGHT_MODE) {
          Settings.SLEEP_PERIOD = 1000 * 60;

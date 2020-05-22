@@ -67,7 +67,7 @@
          android:entries="@array/awake_time_labels"
          android:entryValues="@array/awake_time_values"
          android:persistent="true"
-         android:defaultValue="2" />
+         android:defaultValue="120" />
    </PreferenceCategory>
    <PreferenceCategory
       android:key="Data_settings"
