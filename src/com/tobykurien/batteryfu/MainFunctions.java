@@ -6,6 +6,7 @@ import java.util.Date;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.support.v4.app.NotificationCompat;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -68,13 +69,13 @@ public class MainFunctions {
       } else {
          setupDataAlarms(context, am, syncFirst);
 
-         // go to sleep now
-         if (DataToggler.disableData(context, true)) {
-            MainFunctions.showNotificationWaitingForSync(context, settings);
-         } else {
-            // data being left on for some reason (e.g. data while screen on), make sure it is infact on
-            DataToggler.enableData(context, false);
-         }
+//         // go to sleep now
+//         if (DataToggler.disableData(context, true)) {
+//            MainFunctions.showNotificationWaitingForSync(context, settings);
+//         } else {
+//            // data being left on for some reason (e.g. data while screen on), make sure it is infact on
+//            DataToggler.enableData(context, false);
+//         }
       }
    }
 
@@ -113,10 +114,6 @@ public class MainFunctions {
       Settings settings = Settings.getSettings(context);
       try {
          Settings.SLEEP_PERIOD = 1000 * 60 * (Integer.parseInt(settings.getSleepTime()));
-         if (Settings.SLEEP_PERIOD < 1000 * 60 * 15) {
-            // update old, overly-aggressive settings
-            throw new Exception("set default");
-         }
       } catch (Exception ne) {
          Settings.SLEEP_PERIOD = 1000 * 60 * Integer.parseInt(Settings.DEFAULT_SLEEP); // default
       }
@@ -128,39 +125,6 @@ public class MainFunctions {
          Settings.AWAKE_PERIOD = 1000 * Integer.parseInt(Settings.DEFAULT_AWAKE); // default
       }
       Log.d("BatteryFu", "Awake period: " + Settings.AWAKE_PERIOD);
-
-      if (Settings.DEBUG_NIGHT_MODE) {
-         Settings.SLEEP_PERIOD = 1000 * 60;
-         Settings.AWAKE_PERIOD = 1000 * 50;
-         startNow = true;
-      }
-
-      // When the alarm goes off, we want to broadcast an Intent to our
-      // BroadcastReceiver. Here we make an Intent with an explicit class
-      // name to have our own receiver (which has been published in
-      // AndroidManifest.xml) instantiated and called, and then create an
-      // IntentSender to have the intent executed as a broadcast.
-      // Note that unlike above, this IntentSender is configured to
-      // allow itself to be sent multiple times.
-      Intent intentWake = new Intent(Intent.ACTION_EDIT, Uri.parse("data://wake"), context, DataToggler.class);
-      intentWake.putExtra(INTENT_DATA_STATE, true);
-      PendingIntent senderWake = PendingIntent.getBroadcast(context, 0, intentWake, 0);
-
-      // Set the sleep period
-      long firstTime = SystemClock.elapsedRealtime();
-      if (!startNow)
-         firstTime += Settings.SLEEP_PERIOD;
-
-      // Schedule the wake alarm!
-      am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, Settings.SLEEP_PERIOD, senderWake);
-
-      // Set up sleep intent
-      Intent intentSleep = new Intent(Intent.ACTION_EDIT, Uri.parse("data://sleep"), context, DataToggler.class);
-      intentSleep.putExtra(INTENT_DATA_STATE, false);
-      PendingIntent senderSleep = PendingIntent.getBroadcast(context, 0, intentSleep, 0);
-
-      // Schedule the sleep alarm!
-      am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime + Settings.AWAKE_PERIOD, Settings.SLEEP_PERIOD, senderSleep);
    }
 
    // set up the night mode alarms
@@ -258,19 +222,19 @@ public class MainFunctions {
 
       int icon = R.drawable.ic_stat_notif;
       long when = System.currentTimeMillis();
-      Notification notification = new Notification(icon, null, when);
+      Intent notificationIntent = new Intent(context, ModeSelect.class);
+      notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+         .setSmallIcon(icon)
+         .setContentTitle("BatteryFu")
+         .setContentIntent(PendingIntent.getActivity(context, 0, notificationIntent, 0))
+         .setContentText(text);
+
+      Notification notification = builder.build();
 
       notification.flags |= Notification.FLAG_ONGOING_EVENT;
       notification.flags |= Notification.FLAG_NO_CLEAR;
 
-      // define extended notification area
-      CharSequence contentTitle = "BatteryFu";
-      CharSequence contentText = text;
-
-      Intent notificationIntent = new Intent(context, ModeSelect.class);
-      notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-      notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
       mNotificationManager.notify(NOTIFICATION_ID_RUNNING, notification);
 
    }

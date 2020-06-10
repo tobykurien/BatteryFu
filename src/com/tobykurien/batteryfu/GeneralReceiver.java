@@ -46,7 +46,7 @@ public class GeneralReceiver extends BroadcastReceiver {
                   } catch (Exception e) {
                   }
 
-                  Intent intentSleep = new Intent(Intent.ACTION_EDIT, Uri.parse("data://sleep_once"), context, DataToggler.class);
+                  Intent intentSleep = new Intent(Intent.ACTION_EDIT, Uri.parse("data://sleep"), context, DataToggler.class);
                   intentSleep.putExtra(MainFunctions.INTENT_DATA_STATE, false);
                   if ("0".equals(sleepTime)) {
                      Log.d("BatteryFu", "Switching data off with no delay");
@@ -59,8 +59,8 @@ public class GeneralReceiver extends BroadcastReceiver {
 
                      // Schedule the sleep alarm!
                      long triggerTime = SystemClock.elapsedRealtime() + (long) (iSleepTime * 1000);
-                     AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                     am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, senderSleep);
+                     final AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, senderSleep);
                   }
                }
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
