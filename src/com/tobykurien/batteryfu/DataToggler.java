@@ -9,6 +9,8 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
+import android.app.PendingIntent;
+import android.os.SystemClock;
 
 import com.tobykurien.batteryfu.compat.Api17;
 import com.tobykurien.batteryfu.compat.Api3;
@@ -38,7 +40,7 @@ public class DataToggler extends BroadcastReceiver {
          if (handleWidgetBroadcasts(context, intent, settings)) { return; }
 
          if ("data://wake".equals(intent.getDataString()) || "data://on".equals(intent.getDataString())) {
-            Log.d("BatteryFu", "Data enable");
+            Log.d("BatteryFu", "Data enabled by " + intent.getDataString());
             settings.setLastWakeTime(System.currentTimeMillis());
 
             // Check for airplane mode
@@ -57,10 +59,26 @@ public class DataToggler extends BroadcastReceiver {
                // keep the notification running
                MainFunctions.showNotification(context, settings, context.getString(R.string.airplane_mode_is_on));
             }
-         } else if ("data://sleep".equals(intent.getDataString()) || "data://sleep_once".equals(intent.getDataString())
-                  || "data://off".equals(intent.getDataString())) {
-            Log.d("BatteryFu", "Data disable");
+
+            // Schedule the sleep alarm!
+            final AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            Intent intentSleep = new Intent(Intent.ACTION_EDIT, Uri.parse("data://sleep"), context, DataToggler.class);
+            intentSleep.putExtra(MainFunctions.INTENT_DATA_STATE, false);
+            PendingIntent senderSleep = PendingIntent.getBroadcast(context, 0, intentSleep, 0);
+            long sleepAlarm = SystemClock.elapsedRealtime() + Settings.AWAKE_PERIOD;
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, sleepAlarm, senderSleep);
+
+         } else if ("data://sleep".equals(intent.getDataString()) || "data://off".equals(intent.getDataString())) {
+            Log.d("BatteryFu", "Data disabled by " + intent.getDataString());
             disableData(context, false, DataService.NOTIFICATION_TYPE_WAITING_FOR_SYNC);
+
+            // Schedule the wake alarm!
+            final AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            Intent intentWake = new Intent(Intent.ACTION_EDIT, Uri.parse("data://wake"), context, DataToggler.class);
+            intentWake.putExtra(MainFunctions.INTENT_DATA_STATE, true);
+            PendingIntent senderWake = PendingIntent.getBroadcast(context, 0, intentWake, 0);
+            long wakeAlarm = SystemClock.elapsedRealtime() + Settings.SLEEP_PERIOD;
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, wakeAlarm, senderWake);
          } else if ("nightmode://on".equals(intent.getDataString())) {
             Log.d("BatteryFu", "Night mode enable");
             if (!settings.isNightmode()) {
@@ -102,11 +120,12 @@ public class DataToggler extends BroadcastReceiver {
                MainFunctions.showNotificationWaitingForSync(context, settings);
             }
          } else if ("offlinemode://on".equals(intent.getDataString())) {
-            Log.d("BatteryFu", "Offline mode enable");
+            Log.d("BatteryFu", "Always offline mode enable");
             MainFunctions.teardownDataAlarms(context, null);
             disableData(context, true, DataService.NOTIFICATION_TYPE_OFFLINE_MODE);
+            MainFunctions.showNotification(context, settings, context.getString(R.string.data_disabled_offline_mode_activated));
          } else if ("onlinemode://on".equals(intent.getDataString())) {
-            Log.d("BatteryFu", "Online mode enable");
+            Log.d("BatteryFu", "Always online mode enable");
             MainFunctions.teardownDataAlarms(context, null);
             enableData(context, false, true); // enable mobile and wifi when
                                               // going into online mode
@@ -123,6 +142,7 @@ public class DataToggler extends BroadcastReceiver {
    }
 
    private void nightModeOn(Context context, Settings settings) {
+      Log.d("BatteryFu", "Setting night mode on");
       settings.setIsNightmode(true);
       //settings.setIsTravelMode(false);
 
