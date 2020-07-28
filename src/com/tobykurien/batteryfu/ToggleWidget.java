@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 public class ToggleWidget extends AppWidgetProvider {
+	private String lastaction = null;
 	public static String ACTION_WIDGET_RECEIVER = "com.tobykurien.batteryFu.WidgetReceiver";
 
 	@Override
@@ -52,9 +53,13 @@ public class ToggleWidget extends AppWidgetProvider {
 		actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);		
 		remoteViews.setOnClickPendingIntent(R.id.widget_text, actionPendingIntent);
 	}
-	
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		if (lastaction.equals(intent.getAction())) { // nothing has changed; we can safely return
+			return;
+		}
+		updateValues(intent);
 		super.onReceive(context, intent);
 		Log.i("BatteryFu", "Got widget receive: " + intent.getAction());
 
@@ -63,8 +68,7 @@ public class ToggleWidget extends AppWidgetProvider {
       initWidget(context, remoteViews);
 		
 		// v1.5 fix that doesn't call onDelete Action
-		final String action = intent.getAction();
-		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {
+		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(lastaction)) {
 			final int appWidgetId = intent.getExtras().getInt(
 					AppWidgetManager.EXTRA_APPWIDGET_ID,
 					AppWidgetManager.INVALID_APPWIDGET_ID);
@@ -119,5 +123,9 @@ public class ToggleWidget extends AppWidgetProvider {
 		AppWidgetManager.getInstance(context).updateAppWidget(
 				new ComponentName(context, ToggleWidget.class)
 				, remoteViews);
+	}
+
+	private void updateValues(Intent intent) {
+		lastaction = intent.getAction();
 	}
 }
