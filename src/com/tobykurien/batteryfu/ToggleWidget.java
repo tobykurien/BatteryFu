@@ -52,7 +52,7 @@ public class ToggleWidget extends AppWidgetProvider {
 		actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);		
 		remoteViews.setOnClickPendingIntent(R.id.widget_text, actionPendingIntent);
 	}
-
+	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
