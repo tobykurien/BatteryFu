@@ -17,10 +17,10 @@ public class ToggleWidget extends AppWidgetProvider {
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-			int[] appWidgetIds) {
+						 int[] appWidgetIds) {
 		Log.i("BatteryFu", "Got widget update: " + appWidgetManager.toString());
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-		
+
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
 		initWidget(context, remoteViews);
 		appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
@@ -39,17 +39,17 @@ public class ToggleWidget extends AppWidgetProvider {
 		} else {
 			remoteViews.setImageViewResource(R.id.widget_icon, R.drawable.widget_icon_toggle_off);
 		}
-		
+
 		// separate intent for clicking the icon
 		Intent active = new Intent(context, ToggleWidget.class);
 		active.setAction(ACTION_WIDGET_RECEIVER);
 		active.setData(Uri.parse("click://icon"));
-		PendingIntent actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);		
+		PendingIntent actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);
 		remoteViews.setOnClickPendingIntent(R.id.widget_icon, actionPendingIntent);
-		
+
 		// vs clicking the text
 		active.setData(Uri.parse("click://text"));
-		actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);		
+		actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);
 		remoteViews.setOnClickPendingIntent(R.id.widget_text, actionPendingIntent);
 	}
 
@@ -60,11 +60,10 @@ public class ToggleWidget extends AppWidgetProvider {
 
 		// gonna keep re-initializing the widget to avoid it becoming unresponsive
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
-      initWidget(context, remoteViews);
-		
+		initWidget(context, remoteViews);
+
 		// v1.5 fix that doesn't call onDelete Action
 		final String action = intent.getAction();
-
 		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {
 			final int appWidgetId = intent.getExtras().getInt(
 					AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -78,22 +77,22 @@ public class ToggleWidget extends AppWidgetProvider {
 
 				if (intent.getDataString().equals("batteryfu://enabled")) {
 					setImage(context, R.drawable.widget_icon_toggle_on);
-				}				
+				}
 
 				if (intent.getDataString().equals("batteryfu://disabled")) {
 					setImage(context, R.drawable.widget_icon_toggle_off);
-				}				
-				
+				}
+
 				if (intent.getDataString().equals("click://icon")) {
 					// change image
 					setImage(context, R.drawable.widget_icon_toggle_middle);
-					
+
 					Intent active = new Intent(context, DataToggler.class);
 					active.setData(Uri.parse("batteryfu://toggle"));
-					context.sendBroadcast(active);        
+					context.sendBroadcast(active);
 				}
 
-				if (intent.getDataString().equals("click://text")) {					
+				if (intent.getDataString().equals("click://text")) {
 					// show the preferences screen
 					Intent active = new Intent(context, ModeSelect.class);
 					active.setAction(Intent.ACTION_VIEW);
@@ -106,7 +105,7 @@ public class ToggleWidget extends AppWidgetProvider {
 						new ComponentName(context, ToggleWidget.class)
 						, remoteViews);
 			}
-		}				
+		}
 	}
 
 	/**
@@ -121,5 +120,4 @@ public class ToggleWidget extends AppWidgetProvider {
 				new ComponentName(context, ToggleWidget.class)
 				, remoteViews);
 	}
-
 }
