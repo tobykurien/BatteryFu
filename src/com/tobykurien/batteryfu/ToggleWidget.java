@@ -53,7 +53,7 @@ public class ToggleWidget extends AppWidgetProvider {
 		remoteViews.setOnClickPendingIntent(R.id.widget_text, actionPendingIntent);
 	}
 
- 	@Override
+	@Override
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
 		Log.i("BatteryFu", "Got widget receive: " + intent.getAction());
@@ -63,7 +63,9 @@ public class ToggleWidget extends AppWidgetProvider {
       initWidget(context, remoteViews);
 		
 		// v1.5 fix that doesn't call onDelete Action
-		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(intent.getAction())) {
+		final String action = intent.getAction();
+
+		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(action)) {
 			final int appWidgetId = intent.getExtras().getInt(
 					AppWidgetManager.EXTRA_APPWIDGET_ID,
 					AppWidgetManager.INVALID_APPWIDGET_ID);
