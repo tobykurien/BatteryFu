@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.zip.GZIPInputStream;
 
 import org.apache.http.client.HttpResponseException;
 
@@ -347,6 +348,7 @@ public class Utils {
          try {
             URL url = new URL(urlString.toString());
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("Accept-Encoding", "gzip");
             urlConnection.setFollowRedirects(true);
             urlConnection.setIfModifiedSince(f.lastModified());
             urlConnection.connect();
@@ -357,8 +359,13 @@ public class Utils {
             } else if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                if (UtilsDebug.NET) Log.d(UtilsConstants.LOG_TAG,
                         "Cache not found or expired, loading data from the internet");
-               
-               InputStream is = urlConnection.getInputStream();
+
+               InputStream is;
+               if ("gzip".equals(urlConnection.getContentEncoding())) {
+                  is = new GZIPInputStream(urlConnection.getInputStream());
+               } else {
+                  is = urlConnection.getInputStream();
+               }
                ByteArrayOutputStream os = new ByteArrayOutputStream();
 
                FileWriter fr = null;
