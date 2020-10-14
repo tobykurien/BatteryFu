@@ -13,7 +13,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 public class ToggleWidget extends AppWidgetProvider {
-	private String lastaction = null;
 	public static String ACTION_WIDGET_RECEIVER = "com.tobykurien.batteryFu.WidgetReceiver";
 
 	@Override
@@ -54,12 +53,8 @@ public class ToggleWidget extends AppWidgetProvider {
 		remoteViews.setOnClickPendingIntent(R.id.widget_text, actionPendingIntent);
 	}
 
-	@Override
+ 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if (lastaction.equals(intent.getAction())) { // nothing has changed; we can safely return
-			return;
-		}
-		updateValues(intent);
 		super.onReceive(context, intent);
 		Log.i("BatteryFu", "Got widget receive: " + intent.getAction());
 
@@ -68,7 +63,7 @@ public class ToggleWidget extends AppWidgetProvider {
       initWidget(context, remoteViews);
 		
 		// v1.5 fix that doesn't call onDelete Action
-		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(lastaction)) {
+		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(intent.getAction())) {
 			final int appWidgetId = intent.getExtras().getInt(
 					AppWidgetManager.EXTRA_APPWIDGET_ID,
 					AppWidgetManager.INVALID_APPWIDGET_ID);
@@ -125,7 +120,4 @@ public class ToggleWidget extends AppWidgetProvider {
 				, remoteViews);
 	}
 
-	private void updateValues(Intent intent) {
-		lastaction = intent.getAction();
-	}
 }
